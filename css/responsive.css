@@ -43,7 +43,9 @@
   .nav-wrapper {
     min-height: auto;
     padding: 16px 0;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .brand {
@@ -51,10 +53,7 @@
   }
 
   .main-nav {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px 24px;
+    display: none;
   }
 
   .hero-section {
