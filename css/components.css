@@ -495,8 +495,9 @@
 
 .grid-two {
   display: grid;
-  grid-template-columns: minmax(360px, 1fr) minmax(260px, 0.9fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 30px;
+  align-items: stretch;
 }
 
 .content-panel {
@@ -505,6 +506,8 @@
   border: 1px solid var(--line);
   padding: 28px;
   box-shadow: 0 12px 32px var(--shadow);
+  min-height: 100%;
+  height: auto;
 }
 
 .content-panel.highlight-panel {
@@ -517,6 +520,30 @@
 
 .side-panel {
   background: linear-gradient(180deg, #FFFDFB, var(--bg-soft));
+  display: flex;
+  flex-direction: column;
+}
+
+.side-panel .panel-head {
+  display: block;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.side-panel .panel-head.compact {
+  justify-content: flex-start;
+}
+
+.side-panel .panel-head p {
+  margin-top: 12px;
+  color: var(--text-soft);
+  font-size: 0.88rem;
+  line-height: 1.74;
+}
+
+.side-panel .panel-head .panel-title {
+  display: inline-block;
+  margin-bottom: 2px;
 }
 
 .panel-head {
