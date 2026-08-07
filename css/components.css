@@ -496,6 +496,129 @@
   color: var(--text);
 }
 
+.intro-block {
+  padding-bottom: 8px;
+}
+
+.intro-block .lead-text {
+  margin: 0 0 12px;
+  color: var(--maroon);
+  font-family: 'Noto Sans Devanagari', serif;
+  font-size: clamp(1.08rem, 2.2vw, 1.38rem);
+  line-height: 1.56;
+}
+
+.special-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: var(--bg-soft);
+  border: 1px solid var(--gold-soft);
+}
+
+.special-note p {
+  margin: 0;
+  font-size: 0.90rem;
+  line-height: 1.70;
+}
+
+.special-note .notice-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  font-size: 1.44rem;
+}
+
+.sequence-block {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.sequence-title {
+  font-family: 'Noto Sans Devanagari', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--maroon);
+  letter-spacing: 0.04em;
+}
+
+.sequence-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 16px;
+}
+
+.sequence-list li {
+  position: relative;
+  margin: 0 0 10px;
+  padding: 12px 12px 12px 40px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, rgba(255,248,237,0.88), var(--white));
+  border: 1px solid rgba(245,166,35,0.24);
+  line-height: 1.36;
+}
+
+.sequence-list li::before {
+  content: "✦";
+  position: absolute;
+  top: 11px;
+  left: 13px;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.sequence-list li span {
+  display: inline-block;
+  font-family: 'Noto Sans Devanagari', serif;
+  font-weight: 700;
+  color: var(--text-heading);
+}
+
+.sequence-list li small {
+  display: block;
+  margin-top: 4px;
+  color: var(--text-soft);
+  font-size: 0.70rem;
+}
+
+.food-menu-block {
+  margin-top: 18px;
+}
+
+.food-divider {
+  color: var(--gold);
+  font-size: 1.46rem;
+  line-height: 1;
+  letter-spacing: 0.20em;
+}
+
+.food-list {
+  margin-top: 14px;
+}
+
+.food-row {
+  position: relative;
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(190,167,118,0.34);
+}
+
+.food-row:last-child {
+  border-bottom: none;
+}
+
+.food-row span {
+  display: inline-block;
+  font-family: 'Noto Sans Devanagari', serif;
+  font-size: 0.88rem;
+  color: var(--text-soft);
+  line-height: 1.46;
+}
+
 .notice-box {
   margin-top: 20px;
   border-radius: 18px;
