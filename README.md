@@ -1,11 +1,4 @@
-# Ahar Sahayog
-
-Upload this folder to a GitHub repository and enable GitHub Pages.
-
-Current pages:
-- Home
-- Dainik Karyakram
-- Kalash Sthapna Punyarjak
-- Chowka Niyam/Kram
-- Shrav Shresthi Image Collection
-- Teams / Contact Person
+Sprint 2
+1. Copy your Maharaj Ji PNG into images/maharaj.png
+2. Open index.html
+3. Update data/home.json for daily changes.

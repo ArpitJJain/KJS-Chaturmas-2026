@@ -1,12 +1,16 @@
-
-body{font-family:Arial,sans-serif;background:#f8f5ef;margin:0;color:#333}
-header{background:#7B1E22;color:#fff;padding:20px;text-align:center}
-.container{max-width:1000px;margin:30px auto;padding:20px;
-display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
-.card{background:#fff;border-radius:14px;padding:24px;text-decoration:none;color:#333;
-box-shadow:0 4px 12px rgba(0,0,0,.12)}
-.card:hover{transform:translateY(-3px)}
-.content{max-width:1000px;margin:auto;padding:25px}
-.notice{background:#fff3cd;padding:15px;border-left:5px solid #f4a300;border-radius:8px}
-ul{line-height:1.9}
-footer{text-align:center;padding:20px;color:#777}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap');
+:root{--bg:#FFF8ED;--maroon:#6E1A14;--gold:#C89B3C;--saffron:#F5A623;}
+*{box-sizing:border-box}body{margin:0;font-family:Poppins,'Noto Sans Devanagari',sans-serif;background:linear-gradient(#fffcf7,#fff4e5);color:#3d281d}
+.topbar{background:var(--saffron);padding:10px;text-align:center;font-weight:600}
+header{background:linear-gradient(90deg,var(--maroon),#8a2a20);color:#fff;text-align:center;padding:24px;border-bottom:4px solid var(--gold)}
+.hero{max-width:1100px;margin:24px auto;background:#fff;border-radius:24px;padding:32px;box-shadow:0 10px 30px rgba(0,0,0,.1);border:2px solid #ecd4a4}
+.hero img{max-width:260px;width:100%;display:block;margin:20px auto}
+.title{font:700 2.4rem 'Noto Sans Devanagari'}
+.subtitle{color:#86654d}
+.highlights{background:#fff8e7;border-left:6px solid var(--saffron);padding:18px;border-radius:14px;margin:20px auto;max-width:800px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;max-width:1100px;margin:30px auto;padding:0 20px}
+.card{background:#fff;padding:22px;border-radius:18px;border:1px solid #edd8aa;text-decoration:none;color:inherit;transition:.2s}
+.card:hover{transform:translateY(-5px);box-shadow:0 8px 20px rgba(0,0,0,.12)}
+.card h3{margin:8px 0;color:var(--maroon)}
+.footer{text-align:center;padding:20px;color:#7a675f}
+@media(max-width:768px){.title{font-size:1.8rem}.hero{margin:10px;padding:18px}}

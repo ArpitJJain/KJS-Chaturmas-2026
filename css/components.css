@@ -1,0 +1,11 @@
+.ornament{color:var(--gold);font-size:24px;letter-spacing:4px}
+.btn{
+display:inline-block;
+background:var(--maroon);
+color:#fff;
+padding:12px 22px;
+border-radius:999px;
+text-decoration:none;
+margin-top:12px;
+}
+.btn:hover{background:#8d2d20}
