@@ -1,24 +1,7 @@
 /* Responsive design rules */
-@media (max-width: 1080px) {
+@media (max-width: 1180px) {
   .container {
     width: min(1200px, calc(100% - 48px));
-  }
-
-  .hero-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .two-column-layout,
-  .grid-two {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-image-panel {
-    order: 1;
-  }
-
-  .hero-copy {
-    order: 2;
   }
 
   .nav-card-grid {
@@ -58,6 +41,23 @@
 
   .hero-section {
     padding-top: 24px;
+  }
+
+  .hero-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .two-column-layout,
+  .grid-two {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-image-panel {
+    order: 1;
+  }
+
+  .hero-copy {
+    order: 2;
   }
 
   .nav-card-grid {
