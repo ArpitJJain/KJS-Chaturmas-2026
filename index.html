@@ -1,37 +1,190 @@
-<!doctype html><html lang='hi'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
-<link rel='stylesheet' href='css/style.css'><title>Chaturmas Portal</title></head><body>
-<div class='top' id='announce'>Loading...</div>
-<header><div class='title'>🪔 जिनधर्म आराधना चातुर्मास २०२६</div><div id='loc'></div></header>
-<section class='hero'>
-<div class='hero-flex'>
-<div><img src='images/maharaj.png' alt='Maharaj Ji'></div>
-<div style='flex:1'>
-<h2>पूज्य मुनि श्री १०८ अजित सागर जी महाराज</h2>
-<p id='welcome'></p>
-<div class='divider'>❁ ❁ ❁</div>
-<div><b>📅</b> <span id='date'></span></div>
-<div><b>👨‍👩‍👧‍👦</b> <span id='family'></span></div>
-<div><b>🏺</b> <span id='kalash'></span></div>
-<a href='#gallery'>Today's Poster →</a>
-</div></div>
-</section>
-<section class='hero'><h2>मुख्य अनुभाग</h2>
-<div class='grid'>
-<div class='card'>📅 दैनिक कार्यक्रम</div>
-<div class='card'>🏺 कलश पुण्यार्जक</div>
-<div class='card'>🍽️ चौका नियम</div>
-<div class='card'>🖼️ पोस्टर गैलरी</div>
-<div class='card'>👥 टीम</div>
-</div></section>
-<section class='hero'><h2>दैनिक कार्यक्रम (Preview)</h2>
-<div class='timeline'>
-<div class='event'><b>05:30 AM</b><br>प्रतिक्रमण</div>
-<div class='event'><b>09:00 AM</b><br>प्रवचन</div>
-<div class='event'><b>11:30 AM</b><br>आहार</div>
-</div></section>
-<section class='hero' id='gallery'><h2>🖼️ Poster Gallery Preview</h2>
-<div class='gallery'>
-<div class='thumb'>Day 1</div><div class='thumb'>Day 2</div><div class='thumb'>Day 3</div><div class='thumb'>Day 4</div>
-</div></section>
-<div class='bottomnav'><span>🏠</span><span>📅</span><span>🍽️</span><span>🖼️</span><span>👥</span></div>
-<script src='js/app.js'></script></body></html>
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="जिनधर्म आराधना चातुर्मास २०२६">
+  <title>जिनधर्म आराधना चातुर्मास २०२६</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="announcement-bar">
+    <span id="announce-text">🙏 जिनधर्म आराधना चातुर्मास में आपका स्वागत है</span>
+  </div>
+
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <a class="brand" href="index.html" aria-label="जिनधर्म आराधना">
+        <span class="brand-icon">🪔</span>
+        <span>
+          <span class="brand-title">जिनधर्म आराधना</span>
+          <span class="brand-subtitle">चातुर्मास २०२६</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="मुख्य नेविगेशन">
+        <a class="nav-link active" href="index.html">मुख्य पृष्ठ</a>
+        <a class="nav-link" href="dainik-karyakram.html">दैनिक कार्यक्रम</a>
+        <a class="nav-link" href="kalash.html">कलश स्थापना</a>
+        <a class="nav-link" href="chowka.html">चौका नियम</a>
+        <a class="nav-link" href="gallery.html">गैलरी</a>
+        <a class="nav-link" href="team.html">टीम</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <section class="hero-section">
+      <div class="container hero-layout">
+        <aside class="hero-image-panel">
+          <div class="image-stage">
+            <img class="maharaj-image" src="images/maharaj.png" alt="पूज्य मुनि श्री १०८ अजित सागर जी महाराज">
+          </div>
+          <div class="nameplate">
+            <span class="nameplate-title">पूज्य मुनि श्री १०८ अजित सागर जी महाराज</span>
+          </div>
+        </aside>
+
+        <section class="hero-copy">
+          <div class="event-eyebrow">जिनधर्म आराधना</div>
+          <h1 class="hero-title">जिनधर्म आराधना<br>चातुर्मास २०२६</h1>
+
+          <div class="location-block">
+            <div class="location-name">Adinath Jinalay</div>
+            <div class="location-place">Kharadi Jain Samaj</div>
+          </div>
+
+          <aside class="highlight-card">
+            <div class="card-header">
+              <span class="card-icon">☀️</span>
+              <span class="card-title">Today’s Highlights</span>
+            </div>
+
+            <div class="highlight-list">
+              <div class="highlight-row">
+                <span class="lbl">Today’s Date</span>
+                <span id="todays-date" class="value"></span>
+              </div>
+              <div class="highlight-row">
+                <span class="lbl">Today’s Shrav Shresthi</span>
+                <span id="todays-shrav" class="value"></span>
+              </div>
+              <div class="highlight-row">
+                <span class="lbl">Today’s Kalash</span>
+                <span id="todays-kalash" class="value"></span>
+              </div>
+              <div class="highlight-row announcement-row">
+                <span class="lbl">Announcement</span>
+                <span id="todays-announcement" class="value"></span>
+              </div>
+            </div>
+          </aside>
+        </section>
+      </div>
+    </section>
+
+    <section class="navigation-section">
+      <div class="container">
+        <div class="section-heading centered">
+          <span class="section-kicker">आध्यात्मिक सेवाएँ</span>
+          <h2 class="section-title">मुख्य अनुभाग</h2>
+        </div>
+
+        <div class="nav-card-grid">
+          <a class="nav-card" href="dainik-karyakram.html">
+            <span class="nav-card-icon">📅</span>
+            <span class="nav-card-title">दैनिक कार्यक्रम</span>
+            <span class="nav-card-subtitle">Daily Schedule</span>
+          </a>
+
+          <a class="nav-card" href="kalash.html">
+            <span class="nav-card-icon">🏺</span>
+            <span class="nav-card-title">कलश स्थापना पुण्यार्जक</span>
+            <span class="nav-card-subtitle">Kalash Sponsors</span>
+          </a>
+
+          <a class="nav-card" href="chowka.html">
+            <span class="nav-card-icon">🍽️</span>
+            <span class="nav-card-title">चौका नियम / क्रम</span>
+            <span class="nav-card-subtitle">Dining Sequence</span>
+          </a>
+
+          <a class="nav-card" href="gallery.html">
+            <span class="nav-card-icon">🖼️</span>
+            <span class="nav-card-title">श्राव श्रेष्ठी</span>
+            <span class="nav-card-subtitle">Poster Gallery</span>
+          </a>
+
+          <a class="nav-card" href="team.html">
+            <span class="nav-card-icon">👥</span>
+            <span class="nav-card-title">टीम</span>
+            <span class="nav-card-subtitle">Committee</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="featured-schedule">
+      <div class="container compact-panel">
+        <div class="section-heading">
+          <span class="section-kicker">आज का समय</span>
+          <h2 class="section-title">दैनिक कार्यक्रम (Preview)</h2>
+        </div>
+        <div class="timeline-list">
+          <article class="timeline-item">
+            <span class="time">05:30 AM</span>
+            <span class="event-title">प्रतिक्रमण</span>
+          </article>
+          <article class="timeline-item">
+            <span class="time">09:00 AM</span>
+            <span class="event-title">प्रवचन</span>
+          </article>
+          <article class="timeline-item">
+            <span class="time">11:30 AM</span>
+            <span class="event-title">आहार</span>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <span>© २०२६ जिनधर्म आराधना चातुर्मास</span>
+      <span id="footer-location">आदिनाथ जिनालय, खराड़ी, पुणे</span>
+    </div>
+  </footer>
+
+  <nav class="mobile-bottom-nav" aria-label="मोबाइल नेविगेशन">
+    <a class="bottom-nav-link active" href="index.html" aria-label="मुख्य">
+      <span class="bottom-nav-icon">⌂</span>
+      <span class="bottom-nav-label">मुख्य</span>
+    </a>
+    <a class="bottom-nav-link" href="dainik-karyakram.html" aria-label="कार्यक्रम">
+      <span class="bottom-nav-icon">📅</span>
+      <span class="bottom-nav-label">कार्यक्रम</span>
+    </a>
+    <a class="bottom-nav-link" href="kalash.html" aria-label="कलश">
+      <span class="bottom-nav-icon">🏺</span>
+      <span class="bottom-nav-label">कलश</span>
+    </a>
+    <a class="bottom-nav-link" href="gallery.html" aria-label="गैलरी">
+      <span class="bottom-nav-icon">🖼️</span>
+      <span class="bottom-nav-label">गैलरी</span>
+    </a>
+    <a class="bottom-nav-link" href="team.html" aria-label="टीम">
+      <span class="bottom-nav-icon">👥</span>
+      <span class="bottom-nav-label">टीम</span>
+    </a>
+  </nav>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
