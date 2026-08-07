@@ -120,6 +120,10 @@
   width: 100%;
   margin-top: 12px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
 }
 
 .nameplate .nameplate-title {
@@ -127,7 +131,7 @@
 }
 
 .nameplate .nameplate-title + .nameplate-title {
-  margin-top: 6px;
+  margin-top: 0;
 }
 
 .maharaj-figure {
@@ -187,18 +191,18 @@
 .nameplate-title {
   display: block;
   font-family: 'Noto Sans Devanagari', serif;
-  font-size: clamp(1.10rem, 2.1vw, 1.72rem);
-  line-height: 1.45;
+  font-size: clamp(0.78rem, 1.16vw, 1.00rem);
+  line-height: 1.30;
   color: var(--maroon);
   font-weight: 700;
 }
 
 .nameplate-title + .nameplate-title {
-  margin-top: 4px;
+  margin-top: 0;
 }
 
 .nameplate-subtitle {
-  font-size: clamp(0.88rem, 1.7vw, 1.12rem);
+  font-size: clamp(0.70rem, 1.04vw, 0.88rem);
   color: var(--text-soft);
 }
 
