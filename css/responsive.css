@@ -188,7 +188,7 @@
     bottom: 0;
     z-index: 30;
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     background: linear-gradient(180deg, var(--maroon), var(--maroon-dark));
     border-top: 1px solid var(--gold);
     box-shadow: 0 -4px 20px rgba(60, 35, 16, 0.26);

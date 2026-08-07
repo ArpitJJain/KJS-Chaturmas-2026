@@ -27,6 +27,57 @@
   font-size: 1rem;
 }
 
+.chowka-page .page-hero {
+  background: linear-gradient(135deg, rgba(110, 26, 20, 0.06), transparent), radial-gradient(circle at 90% 18%, rgba(245,166,35,0.14), transparent 26%);
+}
+
+.chowka-page .page-title {
+  color: var(--maroon);
+  font-size: clamp(1.92rem, 4.1vw, 2.82rem);
+}
+
+.chowka-page .page-subtitle {
+  font-family: 'Noto Sans Devanagari', serif;
+  color: var(--text-soft);
+  font-size: 1rem;
+}
+
+.chowka-page .page-section {
+  padding-top: 40px;
+}
+
+.chowka-page .content-panel {
+  border-color: rgba(200, 155, 60, 0.38);
+}
+
+.chowka-page .side-panel {
+  background: linear-gradient(180deg, var(--white), #F8F1E8);
+}
+
+.chowka-page .panel-title {
+  font-size: 1.16rem;
+}
+
+.chowka-page .sequence-title {
+  color: var(--maroon);
+}
+
+.chowka-page .sequence-list li {
+  background: linear-gradient(90deg, #FFFDF9, var(--bg-soft));
+}
+
+.chowka-page .food-row span {
+  color: var(--text-heading);
+}
+
+.chowka-page .food-divider {
+  color: var(--saffron);
+}
+
+.chowka-page .special-note {
+  border-left: 4px solid var(--gold);
+}
+
 .page-section {
   padding: 24px 0 72px;
 }
