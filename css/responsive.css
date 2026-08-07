@@ -60,6 +60,34 @@
     order: 2;
   }
 
+  .image-stage.image-stage-dual {
+    min-height: auto;
+    padding: 18px;
+  }
+
+  .maharaj-gallery {
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 12px;
+  }
+
+  .senior-image {
+    width: min(260px, 88%);
+  }
+
+  .junior-image {
+    width: min(210px, 78%);
+  }
+
+  .nameplate {
+    width: 100%;
+  }
+
+  .nameplate-title {
+    font-size: 1rem;
+    line-height: 1.36;
+  }
+
   .nav-card-grid {
     grid-template-columns: 1fr;
   }

@@ -82,8 +82,9 @@
 
 .image-stage.image-stage-dual {
   display: flex;
+  flex-direction: column;
   gap: 12px;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   padding: 26px 24px;
 }
@@ -104,6 +105,20 @@
   top: 36px;
   color: var(--gold);
   font-size: 2rem;
+}
+
+.maharaj-gallery {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 12px;
+}
+
+.nameplate {
+  width: 100%;
+  margin-top: 12px;
+  text-align: center;
 }
 
 .maharaj-figure {
@@ -161,12 +176,21 @@
 }
 
 .nameplate-title {
-  display: inline-block;
+  display: block;
   font-family: 'Noto Sans Devanagari', serif;
   font-size: clamp(1.10rem, 2.1vw, 1.72rem);
   line-height: 1.45;
   color: var(--maroon);
   font-weight: 700;
+}
+
+.nameplate-title + .nameplate-title {
+  margin-top: 4px;
+}
+
+.nameplate-subtitle {
+  font-size: clamp(0.88rem, 1.7vw, 1.12rem);
+  color: var(--text-soft);
 }
 
 .hero-copy {
