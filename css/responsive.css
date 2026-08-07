@@ -13,8 +13,16 @@
     padding-top: 28px;
   }
 
-  .maharaj-image {
-    width: min(460px, 88%);
+  .maharaj-gallery {
+    gap: 16px;
+  }
+
+  .senior-image {
+    width: clamp(210px, 34vw, 310px);
+  }
+
+  .junior-image {
+    width: clamp(170px, 24vw, 220px);
   }
 }
 
@@ -68,15 +76,15 @@
   .maharaj-gallery {
     flex-direction: row;
     align-items: flex-end;
-    gap: 12px;
+    gap: 10px;
   }
 
   .senior-image {
-    width: min(260px, 88%);
+    width: min(230px, 34vw);
   }
 
   .junior-image {
-    width: min(210px, 78%);
+    width: min(190px, 28vw);
   }
 
   .nameplate {

@@ -87,6 +87,7 @@
   align-items: center;
   justify-content: center;
   padding: 26px 24px;
+  min-height: 500px;
 }
 
 .image-stage::before {
@@ -112,13 +113,21 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  gap: 12px;
+  gap: 24px;
 }
 
 .nameplate {
   width: 100%;
   margin-top: 12px;
   text-align: center;
+}
+
+.nameplate .nameplate-title {
+  display: block;
+}
+
+.nameplate .nameplate-title + .nameplate-title {
+  margin-top: 6px;
 }
 
 .maharaj-figure {
@@ -150,12 +159,12 @@
 }
 
 .senior-image {
-  width: min(315px, 88%);
+  width: clamp(230px, 28vw, 315px);
   max-height: 450px;
 }
 
 .junior-image {
-  width: min(230px, 80%);
+  width: clamp(190px, 22vw, 230px);
   max-height: 370px;
   opacity: 0.98;
 }
