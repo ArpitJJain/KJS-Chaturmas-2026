@@ -1,18 +1,22 @@
 <!doctype html>
 <html lang="hi">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>श्राव श्रेष्ठी | जिनधर्म आराधना</title>
-  <script src="js/gallery.js"></script> 
+  <script src="js/gallery.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/responsive.css">
   <link rel="stylesheet" href="css/gallery.css">
 </head>
+
 <body>
   <div class="announcement-bar">
     <span>🙏 जिनधर्म आराधना चातुर्मास में आपका स्वागत है</span>
@@ -50,33 +54,42 @@
     </section>
 
     <section class="page-section">
-  <div class="container">
 
-    <div class="section-heading">
-      <h2>श्राव श्रेष्ठी</h2>
-      <p>चातुर्मास के दैनिक पोस्टर</p>
-    </div>
+      <div class="container">
 
-    <div id="gallery-grid" class="gallery-grid">
-      <!-- Gallery items are generated from gallery.json -->
-    </div>
+        <div class="section-heading">
+          <h2>श्राव श्रेष्ठी</h2>
+          <p>चातुर्मास के दैनिक पोस्टर</p>
+        </div>
 
-    <!-- Loading indicator -->
-    <div id="gallery-loader" class="gallery-loader">
-      <span class="loader-spinner"></span>
-      <span>और पोस्टर लोड हो रहे हैं...</span>
-    </div>
 
-    <!-- Shown when all images are loaded -->
-    <div id="gallery-end" class="gallery-end">
-      🙏 सभी पोस्टर प्रदर्शित किए जा चुके हैं
-    </div>
+        <div id="gallery-grid" class="gallery-grid">
+        </div>
 
-    <!-- Invisible element used by IntersectionObserver -->
-    <div id="gallery-sentinel"></div>
 
-  </div>
-</section>
+        <div id="gallery-loader" class="gallery-loader">
+
+          <span class="loader-spinner"></span>
+
+          <span>
+            पोस्टर लोड हो रहे हैं...
+          </span>
+
+        </div>
+
+
+        <div id="gallery-end" class="gallery-end" style="display:none">
+
+          🙏 सभी पोस्टर प्रदर्शित किए जा चुके हैं
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <script src="./js/gallery.js"></script>
 
 
   </main>
@@ -115,4 +128,5 @@
     </a>
   </nav>
 </body>
+
 </html>

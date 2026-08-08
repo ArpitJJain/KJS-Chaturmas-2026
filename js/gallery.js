@@ -1,234 +1,182 @@
-const GALLERY_DATA_URL = "data/gallery.json";
-const IMAGE_PATH = "images/gallery/";
+document.addEventListener("DOMContentLoaded", async function () {
 
-const BATCH_SIZE = 8;
+    const galleryGrid = document.getElementById("gallery-grid");
+    const loader = document.getElementById("gallery-loader");
+    const galleryEnd = document.getElementById("gallery-end");
 
-let galleryData = [];
-let currentIndex = 0;
-let isLoading = false;
+    const DATA_URL = "./data/gallery.json";
+    const IMAGE_PATH = "./images/gallery/";
 
-const galleryGrid = document.getElementById("gallery-grid");
-const loader = document.getElementById("gallery-loader");
-const galleryEnd = document.getElementById("gallery-end");
-const sentinel = document.getElementById("gallery-sentinel");
+    console.log("Gallery JS started");
 
-
-/*
- * Load gallery data
- */
-async function loadGalleryData() {
+    if (!galleryGrid) {
+        console.error("ERROR: gallery-grid not found");
+        return;
+    }
 
     try {
 
-        const response = await fetch(GALLERY_DATA_URL);
+        console.log("Loading:", DATA_URL);
+
+        const response = await fetch(DATA_URL);
+
+        console.log("Response status:", response.status);
 
         if (!response.ok) {
-            throw new Error("Unable to load gallery.json");
+            throw new Error(
+                "Could not load gallery.json. HTTP " + response.status
+            );
         }
 
-        galleryData = await response.json();
+        const gallery = await response.json();
 
-        // Hide end message initially
-        galleryEnd.style.display = "none";
+        console.log("Gallery data:", gallery);
 
-        // Load first batch
-        loadNextBatch();
+        if (!Array.isArray(gallery)) {
+            throw new Error(
+                "gallery.json must contain an array"
+            );
+        }
+
+        loader.style.display = "none";
+
+        gallery.forEach(function (item) {
+
+            const card = document.createElement("article");
+
+            card.className = "gallery-tile";
+
+
+            const imageWrapper =
+                document.createElement("div");
+
+            imageWrapper.className =
+                "gallery-image-wrapper";
+
+
+            const image =
+                document.createElement("img");
+
+            const imageUrl =
+                IMAGE_PATH + item.fileName;
+
+            image.src = imageUrl;
+
+            image.alt =
+                item.title || "Gallery image";
+
+            image.loading = "lazy";
+
+            image.decoding = "async";
+
+
+            image.onerror = function () {
+
+                console.error(
+                    "IMAGE NOT FOUND:",
+                    imageUrl
+                );
+
+                imageWrapper.innerHTML = `
+                    <div class="image-error">
+                        🖼️<br>
+                        Image not found
+                        <small>${item.fileName}</small>
+                    </div>
+                `;
+            };
+
+
+            image.onload = function () {
+
+                console.log(
+                    "IMAGE LOADED:",
+                    imageUrl
+                );
+
+            };
+
+
+            imageWrapper.appendChild(image);
+
+
+            const details =
+                document.createElement("div");
+
+            details.className =
+                "gallery-details";
+
+
+            const title =
+                document.createElement("span");
+
+            title.className =
+                "gallery-title";
+
+            title.textContent =
+                item.title || "";
+
+
+            const subtitle =
+                document.createElement("span");
+
+            subtitle.className =
+                "gallery-subtitle";
+
+            subtitle.textContent =
+                item.subtitle || "";
+
+
+            details.appendChild(title);
+            details.appendChild(subtitle);
+
+
+            card.appendChild(imageWrapper);
+            card.appendChild(details);
+
+
+            /*
+             * Open original full-size image
+             */
+            card.addEventListener("click", function () {
+
+                window.open(
+                    imageUrl,
+                    "_blank"
+                );
+
+            });
+
+
+            galleryGrid.appendChild(card);
+
+        });
+
+
+        galleryEnd.style.display = "block";
+
+        console.log(
+            "Gallery successfully rendered:",
+            gallery.length
+        );
+
 
     } catch (error) {
 
-        console.error("Gallery loading error:", error);
+        console.error(
+            "GALLERY ERROR:",
+            error
+        );
 
-        galleryGrid.innerHTML = `
+
+        loader.innerHTML = `
             <div class="gallery-error">
-                <p>Gallery load नहीं हो पाई।</p>
-                <small>Please try again later.</small>
+                <strong>Gallery load नहीं हो पाई</strong>
+                <br><br>
+                ${error.message}
             </div>
         `;
 
-        loader.style.display = "none";
-    }
-}
-
-
-/*
- * Load next batch of images
- */
-function loadNextBatch() {
-
-    if (isLoading) {
-        return;
     }
 
-    if (currentIndex >= galleryData.length) {
-
-        loader.style.display = "none";
-        galleryEnd.style.display = "block";
-
-        return;
-    }
-
-    isLoading = true;
-
-    loader.style.display = "flex";
-
-
-    const nextItems = galleryData.slice(
-        currentIndex,
-        currentIndex + BATCH_SIZE
-    );
-
-
-    nextItems.forEach(item => {
-
-        const tile = createGalleryTile(item);
-
-        galleryGrid.appendChild(tile);
-
-    });
-
-
-    currentIndex += nextItems.length;
-
-    isLoading = false;
-
-
-    // If everything has been loaded
-    if (currentIndex >= galleryData.length) {
-
-        loader.style.display = "none";
-        galleryEnd.style.display = "block";
-    }
-}
-
-
-/*
- * Create one gallery tile
- */
-function createGalleryTile(item) {
-
-    const article = document.createElement("article");
-
-    article.className = "gallery-tile";
-
-
-    /*
-     * Clicking the thumbnail opens
-     * the original image in a new browser tab.
-     */
-    article.addEventListener("click", () => {
-
-        const fullImageUrl = IMAGE_PATH + item.fileName;
-
-        window.open(fullImageUrl, "_blank");
-
-    });
-
-
-    const imageWrapper = document.createElement("div");
-
-    imageWrapper.className = "gallery-image-wrapper";
-
-
-    const image = document.createElement("img");
-
-    image.className = "gallery-image";
-
-    image.src = IMAGE_PATH + item.fileName;
-
-    image.alt = item.title || "Gallery Image";
-
-    /*
-     * Browser native lazy loading
-     */
-    image.loading = "lazy";
-
-    image.decoding = "async";
-
-
-    /*
-     * If an image is missing
-     */
-    image.onerror = () => {
-
-        imageWrapper.classList.add("image-error");
-
-        imageWrapper.innerHTML = `
-            <span>Image unavailable</span>
-        `;
-    };
-
-
-    imageWrapper.appendChild(image);
-
-
-    const details = document.createElement("div");
-
-    details.className = "gallery-details";
-
-
-    const title = document.createElement("span");
-
-    title.className = "gallery-title";
-
-    title.textContent = item.title || "";
-
-
-    const subtitle = document.createElement("span");
-
-    subtitle.className = "gallery-subtitle";
-
-    subtitle.textContent = item.subtitle || "";
-
-
-    details.appendChild(title);
-    details.appendChild(subtitle);
-
-
-    article.appendChild(imageWrapper);
-    article.appendChild(details);
-
-
-    return article;
-}
-
-
-/*
- * Infinite scrolling
- *
- * When the user gets close to the bottom,
- * load another batch.
- */
-const observer = new IntersectionObserver(
-
-    entries => {
-
-        if (entries[0].isIntersecting) {
-
-            loadNextBatch();
-
-        }
-
-    },
-
-    {
-        root: null,
-
-        /*
-         * Start loading before the user
-         * actually reaches the bottom.
-         */
-        rootMargin: "500px 0px",
-
-        threshold: 0
-    }
-
-);
-
-
-observer.observe(sentinel);
-
-
-/*
- * Start gallery
- */
-loadGalleryData();
+});
