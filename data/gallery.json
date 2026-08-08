@@ -1,37 +1,44 @@
 [
   {
-    "fileName": "SS_20260802.jpeg",
+    "fileName": "SS_20260808.jpeg",
     "title": "श्रावक श्रेष्ठी",
-    "subtitle": "02 अगस्त 2026"
-  },
-  {
-    "fileName": "SS_20260803.jpeg",
-    "title": "श्रावक श्रेष्ठी",
-    "subtitle": "03 अगस्त 2026"
-  },
-  {
-    "fileName": "SS_20260804.jpeg",
-    "title": "श्रावक श्रेष्ठी",
-    "subtitle": "04 अगस्त 2026"
-  },
-  {
-    "fileName": "SS_20260805.jpeg",
-    "title": "श्रावक श्रेष्ठी",
-    "subtitle": "05 अगस्त 2026"
-  },
-  {
-    "fileName": "SS_20260806.jpeg",
-    "title": "श्रावक श्रेष्ठी",
-    "subtitle": "06 अगस्त 2026"
+    "subtitle": "08 अगस्त 2026",
+    "date": "2026-08-08"
   },
   {
     "fileName": "SS_20260807.jpeg",
     "title": "श्रावक श्रेष्ठी",
-    "subtitle": "07 अगस्त 2026"
+    "subtitle": "07 अगस्त 2026",
+    "date": "2026-08-07"
   },
   {
-    "fileName": "SS_20260808.jpeg",
+    "fileName": "SS_20260806.jpeg",
     "title": "श्रावक श्रेष्ठी",
-    "subtitle": "08 अगस्त 2026"
+    "subtitle": "06 अगस्त 2026",
+    "date": "2026-08-06"
+  },
+  {
+    "fileName": "SS_20260805.jpeg",
+    "title": "श्रावक श्रेष्ठी",
+    "subtitle": "05 अगस्त 2026",
+    "date": "2026-08-05"
+  },
+  {
+    "fileName": "SS_20260804.jpeg",
+    "title": "श्रावक श्रेष्ठी",
+    "subtitle": "04 अगस्त 2026",
+    "date": "2026-08-04"
+  },
+  {
+    "fileName": "SS_20260803.jpeg",
+    "title": "श्रावक श्रेष्ठी",
+    "subtitle": "03 अगस्त 2026",
+    "date": "2026-08-03"
+  },
+  {
+    "fileName": "SS_20260802.jpeg",
+    "title": "श्रावक श्रेष्ठी",
+    "subtitle": "02 अगस्त 2026",
+    "date": "2026-08-02"
   }
 ]
