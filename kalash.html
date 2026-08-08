@@ -1,96 +1,102 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="hi">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>कलश स्थापना | जिनधर्म आराधना</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/responsive.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>कलश स्थापना पुण्यार्जक | जिनधर्म आराधना चातुर्मास २०२६</title>
+
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/chaturmas.css">
 </head>
+
 <body>
-  <div class="announcement-bar">
-    <span>🙏 जिनधर्म आराधना चातुर्मास में आपका स्वागत है</span>
-  </div>
 
-  <header class="site-header">
-    <div class="container nav-wrapper">
-      <a class="brand" href="index.html">
-        <span class="brand-icon">🪔</span>
-        <span>
-          <span class="brand-title">जिनधर्म आराधना</span>
-          <span class="brand-subtitle">चातुर्मास २०२६</span>
-        </span>
-      </a>
-      <nav class="main-nav" aria-label="मुख्य नेविगेशन">
-        <a class="nav-link" href="index.html">मुख्य पृष्ठ</a>
-        <a class="nav-link" href="dainik-karyakram.html">दैनिक कार्यक्रम</a>
-        <a class="nav-link active" href="kalash.html">कलश स्थापना</a>
-        <a class="nav-link" href="chowka.html">चौका नियम</a>
-        <a class="nav-link" href="gallery.html">गैलरी</a>
-        <a class="nav-link" href="team.html">टीम</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="site-main">
-    <section class="page-hero">
-      <div class="container page-hero-content">
-        <div>
-          <span class="section-kicker">पुण्यार्जक</span>
-          <h1 class="page-title">🏺 कलश स्थापना पुण्यार्जक</h1>
-          <p class="page-subtitle">श्रद्धा, आशीर्वाद और मंगल आरम्भ</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="page-section">
-      <div class="container grid-two">
-        <article class="content-panel highlight-panel">
-          <div class="panel-head">
-            <span class="panel-title">कलश स्थापना</span>
-            <span class="badge">आचार्य समागम</span>
-          </div>
-          <div class="feature-copy">
-            <p>कलश स्थापना के पावन अवसर पर मंगल आरती, शुद्धिकरण तथा शुभ कामना की परम्परा का समन्वय किया जाता है।</p>
-            <ul class="feature-list">
-              <li>कलश पूजन और ध्वज समर्पण</li>
-              <li>मंगलप्रदर्शन एवं शांति पाठ</li>
-              <li>श्रावक/श्राविका सहयोग</li>
-            </ul>
-          </div>
-        </article>
-
-        <aside class="content-panel side-panel">
-          <div class="panel-head compact">
-            <span class="panel-title">पुण्यार्जक</span>
-          </div>
-          <div class="calendar-stack">
-            <div class="calendar-row">
-              <span class="row-label">दिनांक</span>
-              <span class="row-value">07 अगस्त 2026</span>
-            </div>
-            <div class="calendar-row">
-              <span class="row-label">स्थान</span>
-              <span class="row-value">आदिनाथ जिनालय</span>
-            </div>
-            <div class="calendar-row">
-              <span class="row-label">समय</span>
-              <span class="row-value">08:00 AM</span>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </section>
-  </main>
-
-    <div id="footer"></div>
   <div id="navbar"></div>
 
-  <script src="components/components.js"></script>
-  <script src="js/app.js"></script>
+  <main>
+
+    <section class="page-section kalash-directory-section">
+      <div class="container">
+
+        <div class="section-heading centered">
+          <span class="section-kicker">चातुर्मास २०२६</span>
+          <h1 class="section-title">कलश स्थापना पुण्यार्जक</h1>
+        </div>
+
+        <!-- Filters -->
+        <div class="kalash-filter-panel">
+
+          <div class="kalash-filter-field">
+            <label for="kalash-name-filter">
+              नाम से खोजें
+            </label>
+
+            <input type="search" id="kalash-name-filter" class="kalash-filter-input"
+              placeholder="पुण्यार्जक का नाम लिखें..." autocomplete="off">
+          </div>
+
+          <div class="kalash-filter-field">
+            <label for="kalash-type-filter">
+              कलश प्रकार
+            </label>
+
+            <select id="kalash-type-filter" class="kalash-filter-select">
+              <option value="">सभी कलश प्रकार</option>
+            </select>
+          </div>
+
+          <div class="kalash-filter-field">
+            <label for="kalash-number-filter">
+              कलश नंबर
+            </label>
+
+            <select id="kalash-number-filter" class="kalash-filter-select">
+              <option value="">सभी कलश नंबर</option>
+            </select>
+          </div>
+
+          <button type="button" id="kalash-clear-filters" class="kalash-clear-button">
+            फ़िल्टर साफ़ करें
+          </button>
+
+        </div>
+
+        <!-- Result Summary -->
+        <div class="kalash-result-summary">
+          <span id="kalash-result-count">
+            पुण्यार्जक सूची लोड हो रही है...
+          </span>
+        </div>
+
+        <!-- Cards -->
+        <div id="kalash-grid" class="kalash-grid" aria-live="polite"></div>
+
+        <!-- Loading -->
+        <div id="kalash-loader" class="kalash-loader" aria-hidden="true">
+          सूची लोड हो रही है...
+        </div>
+
+        <!-- Empty State -->
+        <div id="kalash-empty" class="kalash-empty" hidden>
+          <div class="kalash-empty-icon">🔎</div>
+          <h3>कोई पुण्यार्जक नहीं मिला</h3>
+          <p>
+            कृपया नाम या कलश प्रकार बदलकर पुनः प्रयास करें।
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer"></div>
+
+  <script src="./js/components.js"></script>
+  <script src="./js/kalash.js"></script>
+
 </body>
+
 </html>
