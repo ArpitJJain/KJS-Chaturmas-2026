@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const IMAGE_PATH =
         "./images/gallery/";
 
-    const BATCH_SIZE = 6;
+    const BATCH_SIZE = 8;
 
 
     // ==========================================
