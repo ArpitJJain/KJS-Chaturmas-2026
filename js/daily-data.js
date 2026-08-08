@@ -8,9 +8,13 @@ const SHARAVAK_DATA_URL =
 const ANNOUNCEMENT_DATA_URL =
     "./data/announcements.json";
 
+const HINDU_CALENDAR_DATA_URL =
+    "./data/hindu-calendar.json";
+
 
 let shravakDataCache = null;
 let announcementDataCache = null;
+let hinduCalendarDataCache = null;
 
 
 // ==========================================
@@ -350,6 +354,22 @@ async function getAnnouncementByDate(date) {
     return entry || null;
 }
 
+function getAnnouncementText(entry) {
+
+    if (!entry) {
+        return "";
+    }
+
+    const text =
+        entry.text ||
+        entry.announcement ||
+        entry.message ||
+        entry.title ||
+        "";
+
+    return String(text).trim();
+}
+
 function getAnnouncementTextByDateSync(date) {
 
     if (!announcementDataCache) {
@@ -361,6 +381,65 @@ function getAnnouncementTextByDateSync(date) {
 
     const entry =
         announcementDataCache.find(
+            item =>
+                item.normalizedDate === normalizedDate
+        );
+
+    return entry || null;
+}
+
+async function loadHinduCalendarData() {
+
+    if (hinduCalendarDataCache) {
+        return hinduCalendarDataCache;
+    }
+
+    const response =
+        await fetch(
+            HINDU_CALENDAR_DATA_URL +
+            "?v=" +
+            Date.now()
+        );
+
+    if (!response.ok) {
+        throw new Error(
+            `Unable to load Hindu calendar data (${response.status})`
+        );
+    }
+
+    const data =
+        await response.json();
+
+    if (!Array.isArray(data)) {
+        throw new Error(
+            "hindu-calendar.json must contain an array"
+        );
+    }
+
+    hinduCalendarDataCache =
+        data.map(item => ({
+            ...item,
+            normalizedDate:
+                normalizeDate(item.date)
+        }));
+
+    return hinduCalendarDataCache;
+}
+
+async function getHinduCalendarByDate(date) {
+
+    const data =
+        await loadHinduCalendarData();
+
+    const normalizedDate =
+        normalizeDate(date);
+
+    if (!normalizedDate) {
+        return null;
+    }
+
+    const entry =
+        data.find(
             item =>
                 item.normalizedDate === normalizedDate
         );

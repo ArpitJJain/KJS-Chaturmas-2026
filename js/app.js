@@ -6,6 +6,34 @@ const siteContent = {
   location: 'footer-location'
 };
 
+async function getTodayDisplayDate() {
+  const today = getTodayDate();
+
+  let englishDate = new Intl.DateTimeFormat('en-IN', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric'
+  }).format(new Date());
+
+  let hinduLabel = 'हिन्दू-दिनांक उपलब्ध नहीं है';
+
+  if (typeof getHinduCalendarByDate === 'function') {
+    const calendarEntry = await getHinduCalendarByDate(today);
+
+    if (calendarEntry) {
+      if (calendarEntry.englishDate) {
+        englishDate = calendarEntry.englishDate;
+      }
+
+      if (calendarEntry.hindiDate) {
+        hinduLabel = calendarEntry.hindiDate;
+      }
+    }
+  }
+
+  return `${englishDate} / ${hinduLabel}`;
+}
+
 async function loadHomeData() {
   try {
     const response = await fetch('data/home.json');
@@ -21,16 +49,38 @@ async function loadHomeData() {
     const announcement = document.getElementById(siteContent.announcement);
     const footerLocation = document.getElementById(siteContent.location);
 
-    if (announceText) announceText.textContent = data.announcement || 'जिनधर्म आराधना चातुर्मास में आपका स्वागत है';
-    if (todayDate) todayDate.textContent = data.todayDate || data.date || 'आज का दिन';
-    if (kalash) kalash.textContent = data.kalash || 'कलश स्थापना';
-    if (announcement) {
-      if (typeof getAnnouncementByDate === 'function') {
-        const announcementText = await getAnnouncementByDate(getTodayDate());
-        announcement.textContent = announcementText?.text || data.announcement || 'जिनधर्म आराधना चातुर्मास में आपका स्वागत है';
-      } else {
-        announcement.textContent = data.announcement || 'जिनधर्म आराधना चातुर्मास में आपका स्वागत है';
+    const today = getTodayDate();
+
+    let headerAnnouncement = data.announcement || 'जिनधर्म आराधना चातुर्मास में आपका स्वागत है';
+    let dailyAnnouncement = data.announcement || 'जिनधर्म आराधना चातुर्मास में आपका स्वागत है';
+
+    if (typeof getAnnouncementByDate === 'function') {
+      const announcementEntry = await getAnnouncementByDate(today);
+      const announcementText = getAnnouncementText(announcementEntry);
+
+      if (announcementText) {
+        headerAnnouncement = announcementText;
+        dailyAnnouncement = announcementText;
       }
+    }
+
+    if (typeof getHinduCalendarByDate === 'function') {
+      const calendarEntry = await getHinduCalendarByDate(today);
+
+      if (calendarEntry?.special && String(calendarEntry.special).trim()) {
+        dailyAnnouncement = String(calendarEntry.special).trim();
+      }
+    }
+
+    if (announceText) {
+      announceText.textContent = headerAnnouncement;
+    }
+
+    if (todayDate) todayDate.textContent = await getTodayDisplayDate();
+    if (kalash) kalash.textContent = data.kalash || 'कलश स्थापना';
+
+    if (announcement) {
+      announcement.textContent = dailyAnnouncement;
     }
 
     if (footerLocation) footerLocation.textContent = data.location || 'आदिनाथ जिनालय, खराड़ी, pune';
