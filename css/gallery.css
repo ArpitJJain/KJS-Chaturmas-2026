@@ -95,32 +95,27 @@
 
 
 .gallery-title {
-
     display: block;
 
     font-family:
         "Noto Sans Devanagari",
         sans-serif;
 
-    font-size: 17px;
+    font-size: 16px;
 
     font-weight: 700;
 
     color: #6E1A14;
-
 }
 
-
 .gallery-subtitle {
-
     display: block;
 
     margin-top: 4px;
 
     font-size: 13px;
 
-    color: #8a7765;
-
+    color: #806f5d;
 }
 
 

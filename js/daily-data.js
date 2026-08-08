@@ -1,0 +1,278 @@
+// ==========================================
+// DAILY DATA HELPERS
+// ==========================================
+
+const SHARAVAK_DATA_URL =
+    "./data/shravak-shresthi.json";
+
+
+let shravakDataCache = null;
+
+
+// ==========================================
+// NORMALIZE DATE
+// ==========================================
+
+function normalizeDate(value) {
+
+    if (!value) {
+        return null;
+    }
+
+
+    const text =
+        String(value).trim();
+
+
+    /*
+     * Already YYYY-MM-DD
+     */
+
+    if (
+        /^\d{4}-\d{2}-\d{2}$/.test(text)
+    ) {
+
+        return text;
+
+    }
+
+
+    /*
+     * ISO date/time
+     *
+     * Example:
+     * 2026-08-08T00:00:00
+     */
+
+    if (
+        /^\d{4}-\d{2}-\d{2}T/.test(text)
+    ) {
+
+        return text.substring(0, 10);
+
+    }
+
+
+    /*
+     * Try JavaScript Date
+     */
+
+    const date =
+        new Date(text);
+
+
+    if (
+        Number.isNaN(date.getTime())
+    ) {
+
+        return null;
+
+    }
+
+
+    const year =
+        date.getFullYear();
+
+
+    const month =
+        String(
+            date.getMonth() + 1
+        ).padStart(2, "0");
+
+
+    const day =
+        String(
+            date.getDate()
+        ).padStart(2, "0");
+
+
+    return `${year}-${month}-${day}`;
+
+}
+
+
+// ==========================================
+// LOAD SHARAVAK DATA
+// ==========================================
+
+async function loadShravakData() {
+
+    if (shravakDataCache) {
+
+        return shravakDataCache;
+
+    }
+
+
+    const response =
+        await fetch(
+            SHARAVAK_DATA_URL +
+            "?v=" +
+            Date.now()
+        );
+
+
+    if (!response.ok) {
+
+        throw new Error(
+            `Unable to load Shravak data (${response.status})`
+        );
+
+    }
+
+
+    const data =
+        await response.json();
+
+
+    if (!Array.isArray(data)) {
+
+        throw new Error(
+            "shravak-shresthi.json must contain an array"
+        );
+
+    }
+
+
+    /*
+     * Normalize every date once
+     */
+
+    shravakDataCache =
+        data.map(item => ({
+
+            ...item,
+
+            normalizedDate:
+                normalizeDate(item.date)
+
+        }));
+
+
+    console.log(
+        "Shravak data loaded:",
+        shravakDataCache.length
+    );
+
+
+    return shravakDataCache;
+
+}
+
+
+// ==========================================
+// FIND SHARAVAK BY DATE
+// ==========================================
+
+async function getShravakByDate(date) {
+
+    const data =
+        await loadShravakData();
+
+
+    const normalizedDate =
+        normalizeDate(date);
+
+
+    if (!normalizedDate) {
+
+        return null;
+
+    }
+
+
+    const entry =
+        data.find(
+            item =>
+                item.normalizedDate ===
+                normalizedDate
+        );
+
+
+    return entry || null;
+
+}
+
+
+// ==========================================
+// GET TODAY
+// ==========================================
+
+function getTodayDate() {
+
+    const now =
+        new Date();
+
+
+    const year =
+        now.getFullYear();
+
+
+    const month =
+        String(
+            now.getMonth() + 1
+        ).padStart(2, "0");
+
+
+    const day =
+        String(
+            now.getDate()
+        ).padStart(2, "0");
+
+
+    return `${year}-${month}-${day}`;
+
+}
+
+
+// ==========================================
+// DISPLAY NAME
+// ==========================================
+
+function getShravakDisplayName(entry) {
+
+    if (!entry) {
+
+        return "नाम उपलब्ध नहीं है";
+
+    }
+
+
+    if (entry.name === "❌") {
+
+        return "आज श्रावक श्रेष्ठी नहीं है";
+
+    }
+
+
+    if (
+        !entry.name ||
+        !String(entry.name).trim()
+    ) {
+
+        return "नाम उपलब्ध नहीं है";
+
+    }
+
+
+    return entry.name;
+
+}
+
+function getShravakNameByDateSync(date) {
+
+    if (!shravakDataCache) {
+        return null;
+    }
+
+    const normalizedDate =
+        normalizeDate(date);
+
+    const entry =
+        shravakDataCache.find(
+            item =>
+                item.normalizedDate === normalizedDate
+        );
+
+    return entry || null;
+}

@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
-
+    
     console.log("================================");
     console.log("GALLERY V3 STARTED");
     console.log("================================");
@@ -48,8 +48,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     let finished = false;
 
     let observer = null;
-
-
+    
     // ==========================================
     // VALIDATE HTML
     // ==========================================
@@ -90,10 +89,19 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         }
 
-
         galleryData =
             await response.json();
 
+
+        // ======================================
+        // LOAD SHARAVAK DATA
+        // ======================================
+
+        await loadShravakData();
+
+        console.log(
+            "Shravak data ready for gallery"
+        );
 
         // ======================================
         // VALIDATE JSON
@@ -106,7 +114,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             );
 
         }
-
 
         console.log(
             "Records before sorting:",
@@ -294,19 +301,31 @@ document.addEventListener("DOMContentLoaded", async () => {
         details.className =
             "gallery-details";
 
+            
+        // --------------------------------------
+        // SHARAVAK NAME
+        // --------------------------------------
+
+        // --------------------------------------
+        // SHARAVAK NAME
+        // --------------------------------------
+
+        const shravakEntry =
+            getShravakNameByDateSync(item.date);
+
 
         const title =
             document.createElement("span");
-
 
         title.className =
             "gallery-title";
 
 
         title.textContent =
-            item.title || "";
-
-
+            getShravakDisplayName(
+                shravakEntry
+            );
+                
         const subtitle =
             document.createElement("span");
 

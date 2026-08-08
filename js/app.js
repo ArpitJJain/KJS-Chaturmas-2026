@@ -33,5 +33,101 @@ async function loadHomeData() {
     console.warn('Home data could not be loaded:', error);
   }
 }
+async function loadTodayShravak() {
+
+    const element =
+        document.getElementById("todays-shrav");
+
+    if (!element) {
+        return;
+    }
+
+    try {
+
+        const response =
+            await fetch("./data/shravak-shresthi.json");
+
+        if (!response.ok) {
+            throw new Error(
+                `HTTP ${response.status}`
+            );
+        }
+
+        const data =
+            await response.json();
+
+
+        // -----------------------------
+        // LOCAL SYSTEM DATE
+        // -----------------------------
+
+        const now = new Date();
+
+        const year =
+            now.getFullYear();
+
+        const month =
+            String(now.getMonth() + 1)
+                .padStart(2, "0");
+
+        const day =
+            String(now.getDate())
+                .padStart(2, "0");
+
+        const today =
+            `${year}-${month}-${day}`;
+
+
+        // -----------------------------
+        // FIND TODAY
+        // -----------------------------
+
+        const entry =
+            data.find(
+                item => item.date === today
+            );
+
+
+        if (!entry) {
+
+            element.textContent =
+                "नाम उपलब्ध नहीं है";
+
+            return;
+        }
+
+
+        if (entry.name === "❌") {
+
+            element.textContent =
+                "आज श्रावक श्रेष्ठी नहीं है";
+
+        } else if (!entry.name) {
+
+            element.textContent =
+                "नाम उपलब्ध नहीं है";
+
+        } else {
+
+            element.textContent =
+                entry.name;
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Shravak Shresthi error:",
+            error
+        );
+
+        element.textContent =
+            "जानकारी उपलब्ध नहीं है";
+
+    }
+}
+
+
+loadTodayShravak();
 
 loadHomeData();

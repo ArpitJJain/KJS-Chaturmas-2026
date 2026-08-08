@@ -856,3 +856,250 @@
   font-size: 0.78rem;
 }
 
+
+/* ==========================================
+   NAVBAR
+========================================== */
+
+.site-nav {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+    background:
+        rgba(255, 248, 237, 0.96);
+
+    backdrop-filter:
+        blur(12px);
+
+    border-bottom:
+        1px solid #e4c98e;
+
+}
+
+
+.nav-container {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding:
+        10px 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+}
+
+
+.nav-logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color:
+        #6E1A14;
+
+    text-decoration: none;
+
+    font-weight: 700;
+
+}
+
+
+.nav-links {
+
+    display: flex;
+
+    gap: 8px;
+
+}
+
+
+.nav-links a {
+
+    padding:
+        10px 12px;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    color:
+        #5b4638;
+
+    transition:
+        .2s ease;
+
+}
+
+
+.nav-links a:hover,
+.nav-links a.active {
+
+    background:
+        #fff0cf;
+
+    color:
+        #6E1A14;
+
+}
+
+
+.nav-toggle {
+
+    display: none;
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+}
+
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.site-footer {
+
+    margin-top: 70px;
+
+    padding:
+        45px 20px;
+
+    text-align: center;
+
+    background:
+        #6E1A14;
+
+    color:
+        #fff4df;
+
+    border-top:
+        4px solid #C89B3C;
+
+}
+
+
+.footer-ornament {
+
+    color:
+        #F5A623;
+
+    margin-bottom:
+        15px;
+
+}
+
+
+.site-footer h3 {
+
+    margin:
+        5px 0;
+
+    font-family:
+        "Noto Sans Devanagari",
+        sans-serif;
+
+}
+
+
+.footer-divider {
+
+    width:
+        100px;
+
+    height:
+        1px;
+
+    margin:
+        20px auto;
+
+    background:
+        #C89B3C;
+
+}
+
+
+.footer-small {
+
+    font-size:
+        13px;
+
+    opacity:
+        .8;
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width:800px) {
+
+    .nav-toggle {
+
+        display: block;
+
+        color:
+            #6E1A14;
+
+    }
+
+
+    .nav-links {
+
+        position: absolute;
+
+        top: 100%;
+
+        left: 0;
+
+        right: 0;
+
+        display: none;
+
+        flex-direction: column;
+
+        background:
+            #fff8ed;
+
+        padding: 12px;
+
+        border-bottom:
+            1px solid #e4c98e;
+
+    }
+
+
+    .nav-links.open {
+
+        display: flex;
+
+    }
+
+
+    .nav-links a {
+
+        padding:
+            14px;
+
+    }
+
+}
