@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     console.log("Loading common components");
 
-
     async function loadComponent(
         elementId,
         file
@@ -57,6 +56,25 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     }
 
+    function highlightCurrentPage() {
+
+        const currentPage =
+            window.location.pathname
+                .split("/")
+                .pop() || "index.html";
+
+        const allPageLinks = [
+            ...document.querySelectorAll(".main-nav .nav-link"),
+            ...document.querySelectorAll(".mobile-bottom-nav .bottom-nav-link")
+        ];
+
+        allPageLinks.forEach(link => {
+            const href = link.getAttribute("href");
+            const isActive = href === currentPage;
+            link.classList.toggle("active", isActive);
+        });
+
+    }
 
     // ----------------------------------------
     // Load navbar
@@ -77,6 +95,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         "./components/footer.html"
     );
 
+    highlightCurrentPage();
 
     // ----------------------------------------
     // Mobile navigation
@@ -108,33 +127,12 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     }
 
+    if (typeof loadHomeData === "function") {
+        await loadHomeData();
+    }
 
-    // ----------------------------------------
-    // Highlight current page
-    // ----------------------------------------
-
-    const currentPage =
-        window.location.pathname
-            .split("/")
-            .pop() || "index.html";
-
-
-    document
-        .querySelectorAll(".nav-links a")
-        .forEach(link => {
-
-            const href =
-                link.getAttribute("href");
-
-
-            if (href === currentPage) {
-
-                link.classList.add(
-                    "active"
-                );
-
-            }
-
-        });
+    if (typeof loadTodayShravak === "function") {
+        await loadTodayShravak();
+    }
 
 });

@@ -128,6 +128,5 @@ async function loadTodayShravak() {
 }
 
 
-loadTodayShravak();
-
-loadHomeData();
+// Dynamic content is now refreshed after footer markup is inserted by the component loader.
+// The page fragments are injected during DOMContentLoaded, so the JSON bindings run there.
