@@ -5,8 +5,12 @@
 const SHARAVAK_DATA_URL =
     "./data/shravak-shresthi.json";
 
+const ANNOUNCEMENT_DATA_URL =
+    "./data/announcements.json";
+
 
 let shravakDataCache = null;
+let announcementDataCache = null;
 
 
 // ==========================================
@@ -270,6 +274,93 @@ function getShravakNameByDateSync(date) {
 
     const entry =
         shravakDataCache.find(
+            item =>
+                item.normalizedDate === normalizedDate
+        );
+
+    return entry || null;
+}
+
+// ==========================================
+// LOAD ANNOUNCEMENT DATA
+// ==========================================
+
+async function loadAnnouncementData() {
+
+    if (announcementDataCache) {
+        return announcementDataCache;
+    }
+
+    const response =
+        await fetch(
+            ANNOUNCEMENT_DATA_URL +
+            "?v=" +
+            Date.now()
+        );
+
+    if (!response.ok) {
+        throw new Error(
+            `Unable to load announcements data (${response.status})`
+        );
+    }
+
+    const data =
+        await response.json();
+
+    if (!Array.isArray(data)) {
+        throw new Error(
+            "announcements.json must contain an array"
+        );
+    }
+
+    announcementDataCache =
+        data.map(item => ({
+            ...item,
+            normalizedDate:
+                normalizeDate(item.date)
+        }));
+
+    console.log(
+        "Announcement data loaded:",
+        announcementDataCache.length
+    );
+
+    return announcementDataCache;
+}
+
+async function getAnnouncementByDate(date) {
+
+    const data =
+        await loadAnnouncementData();
+
+    const normalizedDate =
+        normalizeDate(date);
+
+    if (!normalizedDate) {
+        return null;
+    }
+
+    const entry =
+        data.find(
+            item =>
+                item.normalizedDate ===
+                normalizedDate
+        );
+
+    return entry || null;
+}
+
+function getAnnouncementTextByDateSync(date) {
+
+    if (!announcementDataCache) {
+        return null;
+    }
+
+    const normalizedDate =
+        normalizeDate(date);
+
+    const entry =
+        announcementDataCache.find(
             item =>
                 item.normalizedDate === normalizedDate
         );

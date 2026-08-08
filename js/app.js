@@ -24,7 +24,15 @@ async function loadHomeData() {
     if (announceText) announceText.textContent = data.announcement || 'जिनधर्म आराधना चातुर्मास में आपका स्वागत है';
     if (todayDate) todayDate.textContent = data.todayDate || data.date || 'आज का दिन';
     if (kalash) kalash.textContent = data.kalash || 'कलश स्थापना';
-    if (announcement) announcement.textContent = data.announcement || 'जिनधर्म आराधना चातुर्मास में आपका स्वागत है';
+    if (announcement) {
+      if (typeof getAnnouncementByDate === 'function') {
+        const announcementText = await getAnnouncementByDate(getTodayDate());
+        announcement.textContent = announcementText?.text || data.announcement || 'जिनधर्म आराधना चातुर्मास में आपका स्वागत है';
+      } else {
+        announcement.textContent = data.announcement || 'जिनधर्म आराधना चातुर्मास में आपका स्वागत है';
+      }
+    }
+
     if (footerLocation) footerLocation.textContent = data.location || 'आदिनाथ जिनालय, खराड़ी, pune';
   } catch (error) {
     console.warn('Home data could not be loaded:', error);
