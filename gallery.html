@@ -4,12 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>श्राव श्रेष्ठी | जिनधर्म आराधना</title>
+  <script src="js/gallery.js"></script> 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/gallery.css">
 </head>
 <body>
   <div class="announcement-bar">
@@ -48,25 +50,35 @@
     </section>
 
     <section class="page-section">
-      <div class="container gallery-grid">
-        <article class="gallery-tile">
-          <span class="gallery-title">प्रवचन</span>
-          <span class="gallery-subtitle">Day 01</span>
-        </article>
-        <article class="gallery-tile">
-          <span class="gallery-title">कलश स्थापना</span>
-          <span class="gallery-subtitle">Day 02</span>
-        </article>
-        <article class="gallery-tile">
-          <span class="gallery-title">चौका सेवा</span>
-          <span class="gallery-subtitle">Day 03</span>
-        </article>
-        <article class="gallery-tile">
-          <span class="gallery-title">समापन</span>
-          <span class="gallery-subtitle">Day 04</span>
-        </article>
-      </div>
-    </section>
+  <div class="container">
+
+    <div class="section-heading">
+      <h2>श्राव श्रेष्ठी</h2>
+      <p>चातुर्मास के दैनिक पोस्टर</p>
+    </div>
+
+    <div id="gallery-grid" class="gallery-grid">
+      <!-- Gallery items are generated from gallery.json -->
+    </div>
+
+    <!-- Loading indicator -->
+    <div id="gallery-loader" class="gallery-loader">
+      <span class="loader-spinner"></span>
+      <span>और पोस्टर लोड हो रहे हैं...</span>
+    </div>
+
+    <!-- Shown when all images are loaded -->
+    <div id="gallery-end" class="gallery-end">
+      🙏 सभी पोस्टर प्रदर्शित किए जा चुके हैं
+    </div>
+
+    <!-- Invisible element used by IntersectionObserver -->
+    <div id="gallery-sentinel"></div>
+
+  </div>
+</section>
+
+
   </main>
 
   <footer class="footer">
