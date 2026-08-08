@@ -1,182 +1,427 @@
-document.addEventListener("DOMContentLoaded", async function () {
+document.addEventListener("DOMContentLoaded", function () {
 
-    const galleryGrid = document.getElementById("gallery-grid");
-    const loader = document.getElementById("gallery-loader");
-    const galleryEnd = document.getElementById("gallery-end");
+    const galleryGrid =
+        document.getElementById("gallery-grid");
+
+    const loader =
+        document.getElementById("gallery-loader");
+
+    const galleryEnd =
+        document.getElementById("gallery-end");
+
+    const sentinel =
+        document.getElementById("gallery-sentinel");
+
 
     const DATA_URL = "./data/gallery.json";
     const IMAGE_PATH = "./images/gallery/";
 
-    console.log("Gallery JS started");
+    // Number of cards added at a time
+    const BATCH_SIZE = 8;
 
-    if (!galleryGrid) {
-        console.error("ERROR: gallery-grid not found");
-        return;
+
+    let galleryData = [];
+    let currentIndex = 0;
+
+    // Keeps track of images already displayed
+    const displayedImages = new Set();
+
+    let observer = null;
+    let loading = false;
+
+
+    // ------------------------------------------
+    // LOAD JSON
+    // ------------------------------------------
+
+    async function loadGallery() {
+
+        try {
+
+            console.log("Loading gallery JSON...");
+
+            const response =
+                await fetch(DATA_URL);
+
+            if (!response.ok) {
+
+                throw new Error(
+                    `Gallery JSON HTTP error: ${response.status}`
+                );
+
+            }
+
+
+            const data =
+                await response.json();
+
+
+            if (!Array.isArray(data)) {
+
+                throw new Error(
+                    "gallery.json must contain an array"
+                );
+
+            }
+
+
+            galleryData = data;
+
+            console.log(
+                `Gallery contains ${galleryData.length} items`
+            );
+
+
+            // Remove loader
+            loader.style.display = "none";
+
+
+            // Load first batch
+            loadNextBatch();
+
+
+            // Setup infinite scrolling
+            setupObserver();
+
+
+        } catch (error) {
+
+            console.error(
+                "Gallery error:",
+                error
+            );
+
+
+            loader.innerHTML = `
+                <div class="gallery-error">
+                    Gallery load नहीं हो पाई
+                    <br><br>
+                    ${error.message}
+                </div>
+            `;
+
+        }
+
     }
 
-    try {
 
-        console.log("Loading:", DATA_URL);
+    // ------------------------------------------
+    // LOAD NEXT BATCH
+    // ------------------------------------------
 
-        const response = await fetch(DATA_URL);
+    function loadNextBatch() {
 
-        console.log("Response status:", response.status);
-
-        if (!response.ok) {
-            throw new Error(
-                "Could not load gallery.json. HTTP " + response.status
-            );
+        // Already loading
+        if (loading) {
+            return;
         }
 
-        const gallery = await response.json();
 
-        console.log("Gallery data:", gallery);
+        // NOTHING LEFT
+        if (
+            currentIndex >= galleryData.length
+        ) {
 
-        if (!Array.isArray(gallery)) {
-            throw new Error(
-                "gallery.json must contain an array"
-            );
+            finishGallery();
+
+            return;
         }
 
-        loader.style.display = "none";
 
-        gallery.forEach(function (item) {
-
-            const card = document.createElement("article");
-
-            card.className = "gallery-tile";
+        loading = true;
 
 
-            const imageWrapper =
-                document.createElement("div");
-
-            imageWrapper.className =
-                "gallery-image-wrapper";
+        const startIndex =
+            currentIndex;
 
 
-            const image =
-                document.createElement("img");
-
-            const imageUrl =
-                IMAGE_PATH + item.fileName;
-
-            image.src = imageUrl;
-
-            image.alt =
-                item.title || "Gallery image";
-
-            image.loading = "lazy";
-
-            image.decoding = "async";
+        const endIndex =
+            Math.min(
+                currentIndex + BATCH_SIZE,
+                galleryData.length
+            );
 
 
-            image.onerror = function () {
-
-                console.error(
-                    "IMAGE NOT FOUND:",
-                    imageUrl
-                );
-
-                imageWrapper.innerHTML = `
-                    <div class="image-error">
-                        🖼️<br>
-                        Image not found
-                        <small>${item.fileName}</small>
-                    </div>
-                `;
-            };
+        console.log(
+            `Loading ${startIndex} to ${endIndex - 1}`
+        );
 
 
-            image.onload = function () {
+        for (
+            let i = startIndex;
+            i < endIndex;
+            i++
+        ) {
 
-                console.log(
-                    "IMAGE LOADED:",
-                    imageUrl
-                );
-
-            };
-
-
-            imageWrapper.appendChild(image);
+            const item =
+                galleryData[i];
 
 
-            const details =
-                document.createElement("div");
+            // ----------------------------------
+            // DUPLICATE PROTECTION
+            // ----------------------------------
 
-            details.className =
-                "gallery-details";
+            if (
+                !item.fileName ||
+                displayedImages.has(item.fileName)
+            ) {
 
+                continue;
 
-            const title =
-                document.createElement("span");
-
-            title.className =
-                "gallery-title";
-
-            title.textContent =
-                item.title || "";
+            }
 
 
-            const subtitle =
-                document.createElement("span");
-
-            subtitle.className =
-                "gallery-subtitle";
-
-            subtitle.textContent =
-                item.subtitle || "";
+            displayedImages.add(
+                item.fileName
+            );
 
 
-            details.appendChild(title);
-            details.appendChild(subtitle);
+            createGalleryTile(item);
+
+        }
 
 
-            card.appendChild(imageWrapper);
-            card.appendChild(details);
+        // IMPORTANT:
+        // Always move forward.
+        currentIndex = endIndex;
 
 
-            /*
-             * Open original full-size image
-             */
-            card.addEventListener("click", function () {
+        loading = false;
+
+
+        // ----------------------------------
+        // CHECK IF WE ARE DONE
+        // ----------------------------------
+
+        if (
+            currentIndex >= galleryData.length
+        ) {
+
+            finishGallery();
+
+        }
+
+    }
+
+
+    // ------------------------------------------
+    // CREATE CARD
+    // ------------------------------------------
+
+    function createGalleryTile(item) {
+
+        const card =
+            document.createElement("article");
+
+        card.className =
+            "gallery-tile";
+
+
+        const imageWrapper =
+            document.createElement("div");
+
+        imageWrapper.className =
+            "gallery-image-wrapper";
+
+
+        const image =
+            document.createElement("img");
+
+
+        const imageUrl =
+            IMAGE_PATH + item.fileName;
+
+
+        image.className =
+            "gallery-image";
+
+
+        image.src =
+            imageUrl;
+
+
+        image.alt =
+            item.title || "Gallery image";
+
+
+        image.loading =
+            "lazy";
+
+
+        image.decoding =
+            "async";
+
+
+        image.onerror = function () {
+
+            console.error(
+                "Image not found:",
+                imageUrl
+            );
+
+        };
+
+
+        imageWrapper.appendChild(image);
+
+
+        // ----------------------------------
+        // DETAILS
+        // ----------------------------------
+
+        const details =
+            document.createElement("div");
+
+        details.className =
+            "gallery-details";
+
+
+        const title =
+            document.createElement("span");
+
+        title.className =
+            "gallery-title";
+
+        title.textContent =
+            item.title || "";
+
+
+        const subtitle =
+            document.createElement("span");
+
+        subtitle.className =
+            "gallery-subtitle";
+
+        subtitle.textContent =
+            item.subtitle || "";
+
+
+        details.appendChild(title);
+        details.appendChild(subtitle);
+
+
+        card.appendChild(imageWrapper);
+        card.appendChild(details);
+
+
+        // ----------------------------------
+        // OPEN FULL IMAGE
+        // ----------------------------------
+
+        card.addEventListener(
+            "click",
+            function () {
 
                 window.open(
                     imageUrl,
                     "_blank"
                 );
 
-            });
-
-
-            galleryGrid.appendChild(card);
-
-        });
-
-
-        galleryEnd.style.display = "block";
-
-        console.log(
-            "Gallery successfully rendered:",
-            gallery.length
+            }
         );
 
 
-    } catch (error) {
-
-        console.error(
-            "GALLERY ERROR:",
-            error
-        );
-
-
-        loader.innerHTML = `
-            <div class="gallery-error">
-                <strong>Gallery load नहीं हो पाई</strong>
-                <br><br>
-                ${error.message}
-            </div>
-        `;
+        galleryGrid.appendChild(card);
 
     }
+
+
+    // ------------------------------------------
+    // INFINITE SCROLL
+    // ------------------------------------------
+
+    function setupObserver() {
+
+        // If there is no sentinel,
+        // don't enable infinite scroll.
+
+        if (!sentinel) {
+
+            console.warn(
+                "gallery-sentinel not found"
+            );
+
+            return;
+
+        }
+
+
+        observer =
+            new IntersectionObserver(
+
+                function (entries) {
+
+                    if (
+                        entries[0].isIntersecting
+                    ) {
+
+                        loadNextBatch();
+
+                    }
+
+                },
+
+                {
+                    root: null,
+
+                    // Start loading before bottom
+                    rootMargin: "500px 0px",
+
+                    threshold: 0
+                }
+
+            );
+
+
+        observer.observe(
+            sentinel
+        );
+
+    }
+
+
+    // ------------------------------------------
+    // FINISH
+    // ------------------------------------------
+
+    function finishGallery() {
+
+        console.log(
+            "Gallery complete. No more images."
+        );
+
+
+        if (observer) {
+
+            observer.disconnect();
+
+            observer = null;
+
+        }
+
+
+        if (loader) {
+
+            loader.style.display =
+                "none";
+
+        }
+
+
+        if (galleryEnd) {
+
+            galleryEnd.style.display =
+                "block";
+
+        }
+
+    }
+
+
+    // ------------------------------------------
+    // START
+    // ------------------------------------------
+
+    loadGallery();
 
 });
