@@ -214,17 +214,47 @@ document.addEventListener("DOMContentLoaded", async () => {
             !item.familyImage ||
             !String(item.familyImage).trim()
         ) {
-
             return null;
-
         }
-
 
         const wrapper =
             document.createElement("div");
 
         wrapper.className =
             "kalash-image-wrapper";
+
+
+        const link =
+            document.createElement("a");
+
+        link.className =
+            "kalash-image-link";
+
+        const imageFile =
+            String(item.familyImage).trim();
+
+
+        const imageUrl =
+            IMAGE_PATH +
+            imageFile;
+
+
+        /*
+         * Clicking the image opens the
+         * original/full-size image.
+         *
+         * target="_blank" works well on
+         * GitHub Pages and mobile browsers.
+         */
+
+        link.href =
+            imageUrl;
+
+        link.target =
+            "_blank";
+
+        link.rel =
+            "noopener noreferrer";
 
 
         const image =
@@ -235,8 +265,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
         image.src =
-            IMAGE_PATH +
-            String(item.familyImage).trim();
+            imageUrl;
 
 
         image.alt =
@@ -245,23 +274,29 @@ document.addEventListener("DOMContentLoaded", async () => {
                 : "पुण्यार्जक परिवार";
 
 
-        image.loading = "lazy";
-        image.decoding = "async";
+        image.loading =
+            "lazy";
+
+        image.decoding =
+            "async";
 
 
-        // Prevent broken-image icon from appearing.
+        /*
+         * If the image doesn't exist,
+         * remove the entire image section.
+         */
 
         image.onerror = () => {
-
             wrapper.remove();
-
         };
 
 
-        wrapper.appendChild(image);
+        link.appendChild(image);
+
+        wrapper.appendChild(link);
+
 
         return wrapper;
-
     }
 
 
