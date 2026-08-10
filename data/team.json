@@ -1,0 +1,145 @@
+[
+  {
+    "id": "dainik-karya-kram",
+    "name": "Dainik Karya Kram",
+    "hindiName": "दैनिक कार्यक्रम",
+    "icon": "📅",
+    "members": []
+  },
+  {
+    "id": "awas-vyavatah",
+    "name": "Awas Vyavatah Team",
+    "hindiName": "आवास व्यवस्था टीम",
+    "icon": "🏠",
+    "members": [] 
+  },
+  {
+    "id": "manch-sanchalan",
+    "name": "Manch Sanchalan Team",
+    "hindiName": "मंच संचालन टीम",
+    "icon": "🎤",
+    "members": []
+  },
+  {
+    "id": "bhojanshala",
+    "name": "Bhojanshla Team",
+    "hindiName": "भोजनशाला टीम",
+    "icon": "🍲",
+    "members": []
+  },
+  {
+    "id": "chowka",
+    "name": "Chowka Team",
+    "hindiName": "चौका टीम",
+    "icon": "🍽️",
+    "members": [
+      {
+        "name": "आशीष जैन (वडागांव)",
+        "mobile": "9021288774"
+      },
+      {
+        "name": "आशीष जैन (बुढ़ार)",
+        "mobile": "9035411001"
+      },
+      {
+        "name": "विवेक जैन (आगरा)",
+        "mobile": "9320212037"
+      },
+      {
+        "name": "श्रीमती नेहा मोदी जैन",
+        "mobile": "9011050486"
+      },
+      {
+        "name": "श्रीमती रुचि जैन",
+        "mobile": "8552823044"
+      },
+      {
+        "name": "श्रीमती अंशिका जैन",
+        "mobile": "9518356435"
+      },
+      {
+        "name": "सुमीत जैन (बाबा भैया)",
+        "mobile": "9657124488"
+      },
+      {
+        "name": "अर्पित जैन (नौगांव)",
+        "mobile": "9860699870"
+      }
+    ]
+  },
+  {
+    "id": "aahar-charya",
+    "name": "Aahar Charya Team",
+    "hindiName": "आहार चर्या टीम",
+    "icon": "🙏",
+    "members": [
+      {
+        "name": "अंशुल जैन (बनारस)",
+        "mobile": "9963762015"
+      }
+    ]
+  },
+  {
+    "id": "nihar-charya",
+    "name": "Nihar Charya Team",
+    "hindiName": "निहार चर्या टीम",
+    "icon": "🌅",
+    "members": []
+  },
+  {
+    "id": "finance",
+    "name": "Finance Team",
+    "hindiName": "वित्त टीम",
+    "icon": "💰",
+    "members": []
+  },
+  {
+    "id": "print-digital-media",
+    "name": "Print/Digital Media Team",
+    "hindiName": "प्रिंट / डिजिटल मीडिया टीम",
+    "icon": "📱",
+    "members": [
+      {
+        "name": "अभिषेक जैन (बालाघाट)",
+        "mobile": "8308819368"
+      },
+      {
+        "name": "संवेग हर्षुले (वाशिम)",
+        "mobile": "9422920882"
+      },
+      {
+        "name": "अंशुल जैन (बनारस)",
+        "mobile": "9963762015"
+      },
+      {
+        "name": "सुमीत जैन (बाबा भैया)",
+        "mobile": "9657124488"
+      },
+      {
+        "name": "अर्पित जैन (नौगांव)",
+        "mobile": "9860699870"
+      },
+      {
+        "name": "भरत जैन (ब्रांड टाउन)",
+        "mobile": "9422064248"
+      },
+      {
+        "name": "मनीष शाह (V2)",
+        "mobile": "8600268778"
+      }
+      
+    ]
+  },
+  {
+    "id": "website",
+    "name": "Website Team",
+    "hindiName": "वेबसाइट टीम",
+    "icon": "🌐",
+    "members": [
+      {
+        "name": "अर्पित जैन (नौगांव)",
+        "mobile": "9860699870"
+      }
+    ]
+  }
+]

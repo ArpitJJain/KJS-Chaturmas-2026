@@ -1,92 +1,59 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>टीम | जिनधर्म आराधना</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/responsive.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>टीम | जिनधर्म आराधना चातुर्मास 2026</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/team.css">
 </head>
 <body>
-  <div class="announcement-bar">
-    <span>🙏 जिनधर्म आराधना चातुर्मास में आपका स्वागत है</span>
-  </div>
-
-  <header class="site-header">
-    <div class="container nav-wrapper">
-      <a class="brand" href="index.html">
-        <span class="brand-icon">🪔</span>
-        <span>
-          <span class="brand-title">जिनधर्म आराधना</span>
-          <span class="brand-subtitle">चातुर्मास २०२६</span>
-        </span>
+  <header class="team-site-header">
+    <div class="container team-nav-container">
+      <a class="team-brand" href="index.html">
+        <span class="team-brand-icon">🙏</span>
+        <span><strong>जिनधर्म आराधना</strong><small>चातुर्मास २०२६</small></span>
       </a>
-      <nav class="main-nav" aria-label="मुख्य नेविगेशन">
-        <a class="nav-link" href="index.html">मुख्य पृष्ठ</a>
-        <a class="nav-link" href="dainik-karyakram.html">दैनिक कार्यक्रम</a>
-        <a class="nav-link" href="kalash.html">कलश स्थापना</a>
-        <a class="nav-link" href="chowka.html">चौका नियम</a>
-        <a class="nav-link" href="gallery.html">गैलरी</a>
-        <a class="nav-link active" href="team.html">टीम</a>
+      <nav class="team-main-nav" aria-label="मुख्य नेविगेशन">
+        <a href="index.html">मुख्य पृष्ठ</a>
+        <a href="dainik-karyakram.html">दैनिक कार्यक्रम</a>
+        <a href="kalash.html">कलश स्थापना</a>
+        <a href="chowka.html">चौका नियम</a>
+        <a href="gallery.html">गैलरी</a>
+        <a class="active" href="team.html">टीम</a>
       </nav>
     </div>
   </header>
 
-  <main class="site-main">
-    <section class="page-hero">
-      <div class="container page-hero-content">
-        <div>
-          <span class="section-kicker">संगठन</span>
-          <h1 class="page-title">👥 टीम</h1>
-          <p class="page-subtitle">आयोजन समिति और संपर्क</p>
-        </div>
+  <main>
+    <section class="team-hero">
+      <div class="container">
+        <div class="team-eyebrow">जिनधर्म आराधना</div>
+        <h1>सेवा एवं समन्वय टीम</h1>
+        <p>चातुर्मास के विभिन्न सेवा कार्यों में सहयोग करने वाले टीम सदस्यों से संपर्क करें।</p>
       </div>
     </section>
 
-    <section class="page-section">
-      <div class="container grid-two">
-        <article class="content-panel highlight-panel">
-          <div class="panel-head">
-            <span class="panel-title">आयोजन समिति</span>
-            <span class="badge">समन्वय</span>
-          </div>
-          <div class="feature-copy">
-            <p>कमेटी सहयोग, सेवा पद्धति और प्रवचन अनुशासन के लिए समन्वय करती है।</p>
-            <ul class="feature-list">
-              <li>प्रमुख आयोजन संयोजक</li>
-              <li>सामाजिक सेवा समन्वय</li>
-              <li>चौका, प्रवचन और सहयोग</li>
-            </ul>
-          </div>
-        </article>
-
-        <aside class="content-panel side-panel">
-          <div class="panel-head compact">
-            <span class="panel-title">संपर्क</span>
-          </div>
-          <div class="calendar-stack">
-            <div class="calendar-row">
-              <span class="row-label">समन्वय</span>
-              <span class="row-value">आदिनाथ जिनालय</span>
-            </div>
-            <div class="calendar-row">
-              <span class="row-label">समय</span>
-              <span class="row-value">सुबह 08:00 AM</span>
-            </div>
-          </div>
-        </aside>
+    <section class="team-section">
+      <div class="container">
+        <div class="team-section-heading">
+          <span>सेवा सहयोग</span>
+          <h2>हमारी टीमें</h2>
+        </div>
+        <div id="team-loader" class="team-status">टीम विवरण लोड हो रहा है...</div>
+        <div id="team-list" class="team-list" aria-live="polite"></div>
+        <div id="team-empty" class="team-status team-empty" hidden>टीम की जानकारी उपलब्ध नहीं है।</div>
       </div>
     </section>
   </main>
 
-    <div id="footer"></div>
-  <div id="navbar"></div>
+  <footer class="team-footer">
+    <div class="container">
+      <span>© 2026 जिनधर्म आराधना चातुर्मास</span>
+      <span>आदिनाथ जिनालय, खराड़ी, पुणे</span>
+    </div>
+  </footer>
 
-  <script src="components/components.js"></script>
-  <script src="js/app.js"></script>
+  <script src="./js/team.js"></script>
 </body>
 </html>

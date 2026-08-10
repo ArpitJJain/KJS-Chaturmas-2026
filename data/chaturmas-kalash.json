@@ -403,9 +403,9 @@
     "displayAmount": "१ कलश ११ श्रीफल",
     "address": "वीरोदय 2, खराड़ी",
     "comments": "",
-    "familyImage": null,
+    "familyImage": "kalash_34.jpeg",
     "kalashNumber": 34,
-    "amount": 111111
+    "amount": 111111  
   },
   {
     "id": "kalash-038",
@@ -739,7 +739,7 @@
     "displayAmount": "१ कलश ११ श्रीफल",
     "address": "वीरोदय 1, खराड़ी",
     "comments": "",
-    "familyImage": null,
+    "familyImage": "kalash_62.jpeg",
     "kalashNumber": 62,
     "amount": 111111
   },
