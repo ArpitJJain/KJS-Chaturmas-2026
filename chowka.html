@@ -12,29 +12,22 @@
   <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body class="chowka-page">
-  <div class="announcement-bar">
-    <span>🙏 जिनधर्म आराधना चातुर्मास में आपका स्वागत है</span>
+    <div class="announcement-bar">
+    <span id="announce-text">🙏 जिनधर्म आराधना चातुर्मास में आपका स्वागत है</span>
   </div>
 
   <header class="site-header">
     <div class="container nav-wrapper">
-      <a class="brand" href="index.html">
+      <a class="brand" href="index.html" aria-label="जिनधर्म आराधना">
         <span class="brand-icon">🪔</span>
         <span>
           <span class="brand-title">जिनधर्म आराधना</span>
           <span class="brand-subtitle">चातुर्मास २०२६</span>
         </span>
       </a>
-      <nav class="main-nav" aria-label="मुख्य नेविगेशन">
-        <a class="nav-link" href="index.html">मुख्य पृष्ठ</a>
-        <a class="nav-link" href="dainik-karyakram.html">दैनिक कार्यक्रम</a>
-        <a class="nav-link" href="kalash.html">कलश स्थापना</a>
-        <a class="nav-link active" href="chowka.html">चौका नियम</a>
-        <a class="nav-link" href="gallery.html">गैलरी</a>
-        <a class="nav-link" href="team.html">टीम</a>
-      </nav>
     </div>
   </header>
+
 
   <main class="site-main">
     <section class="page-hero">
@@ -106,6 +99,7 @@
   <div id="navbar"></div>
 
   <script src="js/components.js"></script>
+ <script src="js/daily-data.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
