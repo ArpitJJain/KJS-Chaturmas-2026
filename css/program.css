@@ -1,0 +1,76 @@
+/* =========================================================
+   DAINIK KARYAKRAM - VERSION 2
+   ========================================================= */
+
+.program-site-header{background:#7f1d16;color:#fff;border-bottom:3px solid #d9a441}
+.program-nav-container{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.program-brand{display:inline-flex;align-items:center;gap:12px;color:#fff;text-decoration:none}
+.program-brand-icon{width:42px;height:42px;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.45);border-radius:50%;background:rgba(255,255,255,.08)}
+.program-brand strong,.program-brand small{display:block}
+.program-brand strong{font-size:17px}.program-brand small{font-size:12px;opacity:.85;margin-top:2px}
+.program-main-nav{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:6px}
+.program-main-nav a{color:#fff;text-decoration:none;padding:9px 12px;border-radius:8px;font-size:14px;font-weight:600}
+.program-main-nav a:hover,.program-main-nav a.active{background:rgba(255,255,255,.14);color:#ffd978}
+
+.program-hero{padding:52px 0 38px;background:radial-gradient(circle at 10% 20%,rgba(224,168,72,.12),transparent 30%),linear-gradient(135deg,#fffaf2,#f8efe2);border-bottom:1px solid #ead8bd}
+.program-eyebrow{color:#a05a19;font-weight:700;margin-bottom:8px}
+.program-hero h1{margin:0;color:#6f2418;font-size:clamp(32px,5vw,46px);line-height:1.15}
+.program-hero p{max-width:760px;margin:14px 0 0;color:#6f5a48;font-size:16px;line-height:1.7}
+
+.program-section{padding:38px 0 70px;background:#fffaf3}
+
+.program-date-selector{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 20px;margin-bottom:14px;background:#fffdf9;border:1px solid #ead8bd;border-radius:16px;box-shadow:0 4px 15px rgba(105,61,25,.05)}
+.selector-label{display:block;color:#a05a19;font-size:13px;font-weight:800;margin-bottom:3px}
+#selected-date-label{color:#5f261a;font-size:20px}
+.date-control{display:flex;align-items:center;gap:10px}
+.date-control label{font-size:13px;color:#725d4a;font-weight:700}
+.date-control input{font:inherit;color:#5f261a;background:#fff8ed;border:1px solid #dfc6a6;border-radius:9px;padding:9px 11px}
+
+.program-notice{display:flex;align-items:center;gap:10px;padding:12px 15px;margin-bottom:24px;background:#fff4e1;border:1px solid #efd5ae;border-radius:12px;color:#7c542f;font-size:14px;line-height:1.5}
+.notice-icon{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:#b76b22;color:#fff;font-weight:800;flex-shrink:0}
+
+.program-layout{display:grid;grid-template-columns:minmax(0,2fr) minmax(260px,.8fr);gap:24px;align-items:start}
+.program-panel{background:#fffdf9;border:1px solid #ead8bd;border-radius:18px;overflow:hidden;box-shadow:0 6px 22px rgba(105,61,25,.07)}
+.program-panel-head{padding:22px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #f0e3d1;background:linear-gradient(135deg,#fffaf3,#fffdf9)}
+.program-kicker{display:block;color:#a05a19;font-size:13px;font-weight:800;margin-bottom:4px}
+.program-panel-head h2{margin:0;color:#5f261a;font-size:25px}
+.program-date{flex-shrink:0;padding:9px 13px;border-radius:999px;background:#fff0dc;border:1px solid #efd3ad;color:#8b4a18;font-size:14px;font-weight:700}
+
+.program-list{padding:8px 24px 18px}
+.program-item{position:relative;display:grid;grid-template-columns:110px minmax(0,1fr);gap:20px;padding:20px 4px;border-bottom:1px solid #f0e5d8}
+.program-item:last-child{border-bottom:0}
+.program-time{color:#a05a19;font-size:15px;font-weight:800;padding-top:2px}
+.program-task{color:#5f261a;font-size:18px;font-weight:800;line-height:1.4}
+.program-description{margin-top:5px;color:#806954;font-size:14px;line-height:1.55}
+.program-item.is-special::before{content:"";position:absolute;left:-24px;top:19px;width:4px;height:calc(100% - 38px);border-radius:4px;background:#b76b22}
+
+.program-side-panel{background:#fffdf9;border:1px solid #ead8bd;border-radius:18px;padding:22px;box-shadow:0 6px 22px rgba(105,61,25,.06)}
+.program-side-head{display:flex;align-items:center;gap:10px;padding-bottom:14px;border-bottom:1px solid #f0e3d1}
+.program-side-icon{font-size:22px}
+.program-side-head h2{margin:0;color:#6f2418;font-size:19px}
+.program-side-panel p{color:#725d4a;line-height:1.7;font-size:14px;margin:16px 0}
+.program-default-note{display:flex;flex-direction:column;gap:7px;padding:13px;border-radius:11px;background:#fff4e6;border:1px solid #efd8bb;color:#8b4a18;font-size:13px;line-height:1.45}
+.program-default-note strong{color:#6f2418}
+
+.program-empty{padding:35px 24px;text-align:center;color:#8d7158}
+.program-footer{background:#7f1d16;color:rgba(255,255,255,.9);border-top:3px solid #d9a441}
+.program-footer .container{min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:13px}
+
+@media(max-width:900px){
+ .program-nav-container{align-items:flex-start;flex-direction:column;padding:14px 0}
+ .program-main-nav{width:100%;justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap}
+ .program-main-nav a{white-space:nowrap}
+ .program-layout{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+ .program-hero{padding:38px 0 30px}.program-hero h1{font-size:34px}
+ .program-date-selector{align-items:flex-start;flex-direction:column}
+ .date-control{width:100%;justify-content:space-between}
+ .date-control input{min-width:170px}
+ .program-panel-head{align-items:flex-start;flex-direction:column;padding:18px}
+ .program-list{padding:4px 18px 12px}
+ .program-item{grid-template-columns:1fr;gap:5px;padding:17px 2px}
+ .program-task{font-size:17px}
+ .program-item.is-special::before{left:-18px;top:16px;height:calc(100% - 32px)}
+ .program-footer .container{min-height:auto;padding:16px 0;flex-direction:column;align-items:flex-start;gap:5px}
+}
