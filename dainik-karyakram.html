@@ -1,102 +1,103 @@
 <!DOCTYPE html>
 <html lang="hi">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>दैनिक कार्यक्रम | जिनधर्म आराधना चातुर्मास 2026</title>
-<link rel="stylesheet" href="./css/style.css">
-<link rel="stylesheet" href="./css/program.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>दैनिक कार्यक्रम | जिनधर्म आराधना चातुर्मास 2026</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/program.css">
 </head>
+
 <body>
 
-<header class="program-site-header">
-  <div class="container program-nav-container">
-    <a class="program-brand" href="index.html">
-      <span class="program-brand-icon">🙏</span>
-      <span><strong>जिनधर्म आराधना</strong><small>चातुर्मास २०२६</small></span>
-    </a>
-    <nav class="program-main-nav" aria-label="मुख्य नेविगेशन">
-      <a href="index.html">मुख्य पृष्ठ</a>
-      <a class="active" href="dainik-karyakram.html">दैनिक कार्यक्रम</a>
-      <a href="kalash.html">कलश स्थापना</a>
-      <a href="chowka.html">चौका नियम</a>
-      <a href="gallery.html">गैलरी</a>
-      <a href="team.html">टीम</a>
-    </nav>
-  </div>
-</header>
-
-<main>
-<section class="program-hero">
-  <div class="container">
-    <div class="program-eyebrow">जिनधर्म आराधना</div>
-    <h1>दैनिक कार्यक्रम</h1>
-  </div>
-</section>
-
-<section class="program-section">
-<div class="container">
-
-  <div class="program-date-selector">
-    <div>
-      <span class="selector-label">कार्यक्रम की तारीख चुनें</span>
-      <strong id="selected-date-label">--</strong>
+  <header class="program-site-header">
+    <div class="container program-nav-container">
+      <a class="program-brand" href="index.html">
+        <span class="program-brand-icon">🙏</span>
+        <span><strong>जिनधर्म आराधना</strong><small>चातुर्मास २०२६</small></span>
+      </a>
+      <nav class="program-main-nav" aria-label="मुख्य नेविगेशन">
+        <a href="index.html">मुख्य पृष्ठ</a>
+        <a class="active" href="dainik-karyakram.html">दैनिक कार्यक्रम</a>
+        <a href="kalash.html">कलश स्थापना</a>
+        <a href="chowka.html">चौका नियम</a>
+        <a href="gallery.html">गैलरी</a>
+        <a href="team.html">टीम</a>
+      </nav>
     </div>
-    <div class="date-control">
-      <label for="program-date-picker">दिनांक</label>
-      <input type="date" id="program-date-picker">
-    </div>
-  </div>
+  </header>
 
-  <div id="program-notice" class="program-notice">
-    <span class="notice-icon">ℹ</span>
-    <span>अभी कोई विशेष कैलेंडर सेट नहीं है, तो दैनिक कैलेंडर ही दिखा रहे हैं।</span>
-  </div>
+  <main>
+    <section class="program-hero">
+      <div class="container">
+        <div class="program-eyebrow">जिनधर्म आराधना</div>
+        <h1>दैनिक कार्यक्रम</h1>
+      </div>
+    </section>
 
-  <div class="program-layout">
-    <article class="program-panel">
-      <div class="program-panel-head">
-        <div>
-          <span id="program-type" class="program-kicker">दैनिक कार्यक्रम</span>
-          <h2 id="program-title">आज का कार्यक्रम</h2>
+    <section class="program-section">
+      <div class="container">
+
+        <div class="program-date-selector">
+          <div>
+            <span class="selector-label">कार्यक्रम की तारीख चुनें</span>
+            <strong id="selected-date-label">--</strong>
+          </div>
+          <div class="date-control">
+            <label for="program-date-picker">दिनांक</label>
+            <input type="date" id="program-date-picker">
+          </div>
         </div>
-        <div id="program-date" class="program-date">--</div>
-      </div>
 
-      <div id="program-list" class="program-list" aria-live="polite"></div>
-      <div id="program-empty" class="program-empty" hidden>
-        इस तारीख के लिए कार्यक्रम उपलब्ध नहीं है।
-      </div>
-    </article>
+        <div id="program-notice" class="program-notice">
+          <span class="notice-icon">ℹ</span>
+          <span>अभी कोई विशेष कैलेंडर सेट नहीं है, तो दैनिक कैलेंडर ही दिखा रहे हैं।</span>
+        </div>
 
-    <aside class="program-side-panel">
-      <div class="program-side-head">
-        <span id="program-mode-icon" class="program-side-icon">📅</span>
-        <h2 id="program-mode-text">दैनिक कार्यक्रम</h2>
-      </div>
-      <p>
-        आचार्य एवं साधु संगम के अनुसार कार्यक्रम में परिवर्तन संभव है। 
-        कृपया दिन का समय-निर्धारण देखें।
-      </p>
-      <!--<div class="program-default-note">
+        <div class="program-layout">
+          <article class="program-panel">
+            <div class="program-panel-head">
+              <div>
+                <span id="program-type" class="program-kicker">दैनिक कार्यक्रम</span>
+                <h2 id="program-title">आज का कार्यक्रम</h2>
+              </div>
+              <div id="program-date" class="program-date">--</div>
+            </div>
+
+            <div id="program-list" class="program-list" aria-live="polite"></div>
+            <div id="program-empty" class="program-empty" hidden>
+              इस तारीख के लिए कार्यक्रम उपलब्ध नहीं है।
+            </div>
+          </article>
+
+          <aside class="program-side-panel">
+            <div class="program-side-head">
+              <span id="program-mode-icon" class="program-side-icon">📅</span>
+              <h2 id="program-mode-text">दैनिक कार्यक्रम</h2>
+            </div>
+            <p>
+              आचार्य एवं साधु संगम के अनुसार कार्यक्रम में परिवर्तन संभव है।
+              कृपया दिन का समय-निर्धारण देखें।
+            </p>
+            <!--<div class="program-default-note">
         <strong>दैनिक स्थायी कार्यक्रम</strong>
         <span>05:50 AM — निहार चर्या</span>
         <span>09:00 PM — एलक जी वैयावृत्ति</span>
       </div> -->
-    </aside>
-  </div>
+          </aside>
+        </div>
 
-</div>
-</section>
-</main>
+      </div>
+    </section>
+  </main>
 
-<footer class="program-footer">
-  <div class="container">
-    <span>© 2026 जिनधर्म आराधना चातुर्मास</span>
-    <span>आदिनाथ जिनालय, खराड़ी, पुणे</span>
-  </div>
-</footer>
-
-<script src="./js/program.js"></script>
+  <!-- Common footer / bottom navigation -->
+  <div id="footer"></div>
+  <div id="navbar"></div>
+  <script src="js/components.js"></script>
+  <script src="js/daily-data.js"></script>
+  <script src="./js/program.js"></script>
 </body>
+
 </html>
