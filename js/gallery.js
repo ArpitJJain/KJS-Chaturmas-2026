@@ -1,13 +1,17 @@
+// ==========================================================
+// GALLERY - LAZY LOADING / INFINITE SCROLL
+// ==========================================================
+
 document.addEventListener("DOMContentLoaded", async () => {
-    
+
     console.log("================================");
-    console.log("GALLERY V3 STARTED");
+    console.log("GALLERY STARTED");
     console.log("================================");
 
 
-    // ==========================================
+    // ======================================================
     // ELEMENTS
-    // ==========================================
+    // ======================================================
 
     const grid =
         document.getElementById("gallery-grid");
@@ -22,37 +26,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.getElementById("gallery-sentinel");
 
 
-    // ==========================================
-    // CONFIGURATION
-    // ==========================================
-
-    const DATA_URL =
-        "./data/gallery.json";
-
-    const IMAGE_PATH =
-        "./images/gallery/";
-
-    const BATCH_SIZE = 8;
-
-
-    // ==========================================
-    // STATE
-    // ==========================================
-
-    let galleryData = [];
-
-    let currentIndex = 0;
-
-    let loading = false;
-
-    let finished = false;
-
-    let observer = null;
-    
-    // ==========================================
-    // VALIDATE HTML
-    // ==========================================
-
     if (!grid) {
 
         console.error(
@@ -63,17 +36,42 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
 
-    // ==========================================
-    // LOAD JSON
-    // ==========================================
+    // ======================================================
+    // CONFIGURATION
+    // ======================================================
+
+    const DATA_URL =
+        "./data/gallery.json";
+
+    const IMAGE_PATH =
+        "./images/gallery/";
+
+    const BATCH_SIZE = 8;
+
+    // Load next batch when user is this close to bottom
+    const LOAD_DISTANCE = 800;
+
+
+    // ======================================================
+    // STATE
+    // ======================================================
+
+    let galleryData = [];
+
+    let currentIndex = 0;
+
+    let loading = false;
+
+    let finished = false;
+
+    let observer = null;
+
+
+    // ======================================================
+    // LOAD SHARAVAK DATA
+    // ======================================================
 
     try {
-
-        console.log(
-            "Loading:",
-            DATA_URL
-        );
-
 
         const response =
             await fetch(
@@ -89,23 +87,31 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         }
 
+
         galleryData =
             await response.json();
 
 
-        // ======================================
-        // LOAD SHARAVAK DATA
-        // ======================================
+        // --------------------------------------------------
+        // Load Shravak data if helper exists
+        // --------------------------------------------------
 
-        await loadShravakData();
+        if (
+            typeof loadShravakData === "function"
+        ) {
 
-        console.log(
-            "Shravak data ready for gallery"
-        );
+            await loadShravakData();
 
-        // ======================================
-        // VALIDATE JSON
-        // ======================================
+            console.log(
+                "Shravak data ready for gallery"
+            );
+
+        }
+
+
+        // --------------------------------------------------
+        // Validate
+        // --------------------------------------------------
 
         if (!Array.isArray(galleryData)) {
 
@@ -115,23 +121,25 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         }
 
+
         console.log(
-            "Records before sorting:",
+            "Gallery records loaded:",
             galleryData.length
         );
 
 
-        // ======================================
+        // ==================================================
         // SORT BY DATE
-        //
         // Newest → Oldest
-        // ======================================
+        // ==================================================
 
         galleryData.sort(
             (a, b) => {
 
-                return new Date(b.date) -
-                       new Date(a.date);
+                return (
+                    new Date(b.date) -
+                    new Date(a.date)
+                );
 
             }
         );
@@ -158,7 +166,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (loader) {
 
             loader.innerHTML = `
-
                 <div class="gallery-error">
 
                     <strong>
@@ -170,7 +177,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                     ${error.message}
 
                 </div>
-
             `;
 
         }
@@ -179,20 +185,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
 
-    // ==========================================
-    // HIDE LOADER
-    // ==========================================
-
-    if (loader) {
-
-        loader.style.display = "none";
-
-    }
-
-
-    // ==========================================
-    // CREATE CARD
-    // ==========================================
+    // ======================================================
+    // CREATE GALLERY CARD
+    // ======================================================
 
     function createGalleryCard(item) {
 
@@ -204,9 +199,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             "gallery-tile";
 
 
-        // --------------------------------------
-        // IMAGE CONTAINER
-        // --------------------------------------
+        // ==================================================
+        // IMAGE
+        // ==================================================
 
         const imageWrapper =
             document.createElement("div");
@@ -215,10 +210,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         imageWrapper.className =
             "gallery-image-wrapper";
 
-
-        // --------------------------------------
-        // IMAGE
-        // --------------------------------------
 
         const image =
             document.createElement("img");
@@ -250,9 +241,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             "async";
 
 
-        // --------------------------------------
+        // ==================================================
         // IMAGE ERROR
-        // --------------------------------------
+        // ==================================================
 
         image.onerror = () => {
 
@@ -263,7 +254,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
             imageWrapper.innerHTML = `
-
                 <div class="image-error">
 
                     🖼️
@@ -279,7 +269,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                     </small>
 
                 </div>
-
             `;
 
         };
@@ -290,9 +279,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         );
 
 
-        // --------------------------------------
+        // ==================================================
         // DETAILS
-        // --------------------------------------
+        // ==================================================
 
         const details =
             document.createElement("div");
@@ -301,31 +290,54 @@ document.addEventListener("DOMContentLoaded", async () => {
         details.className =
             "gallery-details";
 
-            
-        // --------------------------------------
-        // SHARAVAK NAME
-        // --------------------------------------
 
-        // --------------------------------------
+        // ==================================================
         // SHARAVAK NAME
-        // --------------------------------------
+        // ==================================================
 
-        const shravakEntry =
-            getShravakNameByDateSync(item.date);
+        let shravakEntry = null;
+
+
+        if (
+            typeof getShravakNameByDateSync ===
+            "function"
+        ) {
+
+            shravakEntry =
+                getShravakNameByDateSync(
+                    item.date
+                );
+
+        }
 
 
         const title =
             document.createElement("span");
 
+
         title.className =
             "gallery-title";
 
 
-        title.textContent =
-            getShravakDisplayName(
-                shravakEntry
-            );
-                
+        if (
+            typeof getShravakDisplayName ===
+            "function"
+        ) {
+
+            title.textContent =
+                getShravakDisplayName(
+                    shravakEntry
+                );
+
+        } else {
+
+            title.textContent =
+                item.title ||
+                "श्रावक श्रेष्ठी";
+
+        }
+
+
         const subtitle =
             document.createElement("span");
 
@@ -338,27 +350,33 @@ document.addEventListener("DOMContentLoaded", async () => {
             item.subtitle || "";
 
 
-        details.appendChild(title);
+        details.appendChild(
+            title
+        );
 
-        details.appendChild(subtitle);
+
+        details.appendChild(
+            subtitle
+        );
 
 
-        // --------------------------------------
+        // ==================================================
         // CARD
-        // --------------------------------------
+        // ==================================================
 
         card.appendChild(
             imageWrapper
         );
+
 
         card.appendChild(
             details
         );
 
 
-        // --------------------------------------
+        // ==================================================
         // OPEN FULL IMAGE
-        // --------------------------------------
+        // ==================================================
 
         card.addEventListener(
             "click",
@@ -378,30 +396,26 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
 
-    // ==========================================
+    // ======================================================
     // LOAD NEXT BATCH
-    // ==========================================
+    // ======================================================
 
     function loadNextBatch() {
 
-        // --------------------------------------
-        // HARD STOP
-        // --------------------------------------
+        // --------------------------------------------------
+        // Already finished
+        // --------------------------------------------------
 
         if (finished) {
-
-            console.log(
-                "Gallery already finished."
-            );
 
             return;
 
         }
 
 
-        // --------------------------------------
-        // PREVENT CONCURRENT LOADS
-        // --------------------------------------
+        // --------------------------------------------------
+        // Prevent simultaneous loads
+        // --------------------------------------------------
 
         if (loading) {
 
@@ -410,9 +424,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
 
-        // --------------------------------------
-        // NOTHING LEFT
-        // --------------------------------------
+        // --------------------------------------------------
+        // Nothing remaining
+        // --------------------------------------------------
 
         if (
             currentIndex >=
@@ -428,10 +442,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         loading = true;
 
-
-        // --------------------------------------
-        // DETERMINE BATCH
-        // --------------------------------------
 
         const start =
             currentIndex;
@@ -451,17 +461,19 @@ document.addEventListener("DOMContentLoaded", async () => {
         );
 
 
-        // --------------------------------------
-        // ADVANCE INDEX FIRST
-        // --------------------------------------
+        // --------------------------------------------------
+        // IMPORTANT:
+        // Advance index BEFORE rendering.
+        // This prevents duplicate batches.
+        // --------------------------------------------------
 
         currentIndex =
             end;
 
 
-        // --------------------------------------
-        // RENDER
-        // --------------------------------------
+        // --------------------------------------------------
+        // Render
+        // --------------------------------------------------
 
         for (
             let i = start;
@@ -472,10 +484,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             const item =
                 galleryData[i];
 
-
-            /*
-             * Ignore malformed records
-             */
 
             if (
                 !item ||
@@ -493,10 +501,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
             const card =
-                createGalleryCard(item);
+                createGalleryCard(
+                    item
+                );
 
 
-            grid.appendChild(card);
+            grid.appendChild(
+                card
+            );
 
         }
 
@@ -504,9 +516,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         loading = false;
 
 
-        // --------------------------------------
-        // CHECK END
-        // --------------------------------------
+        console.log(
+            "Displayed:",
+            currentIndex,
+            "/",
+            galleryData.length
+        );
+
+
+        // --------------------------------------------------
+        // End?
+        // --------------------------------------------------
 
         if (
             currentIndex >=
@@ -520,9 +540,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
 
-    // ==========================================
-    // FINISH GALLERY
-    // ==========================================
+    // ======================================================
+    // FINISH
+    // ======================================================
 
     function finishGallery() {
 
@@ -559,9 +579,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         );
 
 
-        // --------------------------------------
-        // STOP OBSERVER
-        // --------------------------------------
+        // --------------------------------------------------
+        // Stop IntersectionObserver
+        // --------------------------------------------------
 
         if (observer) {
 
@@ -572,9 +592,19 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
 
-        // --------------------------------------
-        // HIDE LOADER
-        // --------------------------------------
+        // --------------------------------------------------
+        // Stop scroll listener
+        // --------------------------------------------------
+
+        window.removeEventListener(
+            "scroll",
+            handleScroll
+        );
+
+
+        // --------------------------------------------------
+        // Hide loader
+        // --------------------------------------------------
 
         if (loader) {
 
@@ -584,9 +614,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
 
-        // --------------------------------------
-        // SHOW END MESSAGE
-        // --------------------------------------
+        // --------------------------------------------------
+        // Show end message
+        // --------------------------------------------------
 
         if (endMessage) {
 
@@ -598,28 +628,65 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
 
-    // ==========================================
+    // ======================================================
+    // SCROLL FALLBACK
+    // ======================================================
+
+    function handleScroll() {
+
+        if (finished || loading) {
+
+            return;
+
+        }
+
+
+        const scrollPosition =
+            window.innerHeight +
+            window.scrollY;
+
+
+        const pageHeight =
+            document.documentElement.scrollHeight;
+
+
+        const remaining =
+            pageHeight -
+            scrollPosition;
+
+
+        if (
+            remaining <=
+            LOAD_DISTANCE
+        ) {
+
+            loadNextBatch();
+
+        }
+
+    }
+
+
+    // ======================================================
     // INITIAL LOAD
-    // ==========================================
+    // ======================================================
 
     loadNextBatch();
 
 
-    // ==========================================
-    // INFINITE SCROLL
-    // ==========================================
-
-    /*
-     * Only create the observer if
-     * more records remain.
-     */
+    // ======================================================
+    // INTERSECTION OBSERVER
+    // ======================================================
 
     if (
-        !finished &&
-        currentIndex <
-            galleryData.length &&
-        sentinel
+        sentinel &&
+        typeof IntersectionObserver !==
+        "undefined"
     ) {
+
+        console.log(
+            "Gallery: IntersectionObserver enabled"
+        );
 
 
         observer =
@@ -628,8 +695,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                 entries => {
 
                     if (
-                        entries[0]
-                            .isIntersecting
+                        entries.some(
+                            entry =>
+                                entry.isIntersecting
+                        )
                     ) {
 
                         loadNextBatch();
@@ -639,19 +708,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                 },
 
                 {
-
                     root: null,
 
-                    /*
-                     * Start loading before
-                     * the user reaches bottom.
-                     */
-
                     rootMargin:
-                        "500px 0px",
+                        "800px 0px",
 
                     threshold: 0
-
                 }
 
             );
@@ -661,6 +723,56 @@ document.addEventListener("DOMContentLoaded", async () => {
             sentinel
         );
 
+
+    } else {
+
+        // ==================================================
+        // FALLBACK
+        // ==================================================
+
+        console.warn(
+            "Gallery sentinel not found. Using scroll fallback."
+        );
+
+
+        window.addEventListener(
+            "scroll",
+            handleScroll,
+            {
+                passive: true
+            }
+        );
+
     }
+
+
+    // ======================================================
+    // SAFETY CHECK
+    //
+    // If the first batch does not fill the viewport,
+    // automatically load more.
+    // ======================================================
+
+    setTimeout(
+        () => {
+
+            if (
+                !finished &&
+                document.documentElement.scrollHeight
+                    <= window.innerHeight + 100
+            ) {
+
+                console.log(
+                    "Viewport not filled. Loading another batch."
+                );
+
+
+                loadNextBatch();
+
+            }
+
+        },
+        300
+    );
 
 });
